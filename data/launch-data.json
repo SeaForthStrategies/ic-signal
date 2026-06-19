@@ -1,0 +1,1304 @@
+{
+  "launchInputs": [
+    {
+      "label": "Target Webinar Date",
+      "value": "2026-07-29",
+      "notes": "Edit this date; daily plan dates auto-calculate from Day 60",
+      "owner": "Jayson"
+    },
+    {
+      "label": "Registration Goal",
+      "value": 500,
+      "notes": "Primary target for the launch",
+      "owner": "All"
+    },
+    {
+      "label": "Soft Launch Starts",
+      "value": "Day 43",
+      "notes": "Warm email/list/social testing begins",
+      "owner": "Jayson + Abby"
+    },
+    {
+      "label": "Paid Ads Start",
+      "value": "Day 50",
+      "notes": "Only after tracking, emails, and GHL workflows are tested",
+      "owner": "Jayson + Abby"
+    },
+    {
+      "label": "Primary Webinar Page",
+      "value": "intersectioncapital.com/finding-winners",
+      "notes": "Main registration page",
+      "owner": "Jayson + Abby"
+    },
+    {
+      "label": "Primary CRM",
+      "value": "GoHighLevel",
+      "notes": "Source of truth for leads, segmentation, workflows, and reporting",
+      "owner": "Jayson + Abby"
+    }
+  ],
+  "milestones": [
+    {
+      "milestone": "Funnel, domain structure, GHL pipeline approved",
+      "targetDay": 7,
+      "owner": "Jayson + Abby + Oren",
+      "status": "Not Started",
+      "notes": "Foundation complete before building"
+    },
+    {
+      "milestone": "Registration path works from page to GHL to BigMarker",
+      "targetDay": 14,
+      "owner": "Jayson",
+      "status": "Not Started",
+      "notes": "No paid traffic before this"
+    },
+    {
+      "milestone": "Registration confirmation and pre-webinar nurture built",
+      "targetDay": 21,
+      "owner": "Jayson + Oren",
+      "status": "Not Started",
+      "notes": "Email is a top priority"
+    },
+    {
+      "milestone": "Oren Working Group exoskeleton exists in GHL",
+      "targetDay": 28,
+      "owner": "Jayson",
+      "status": "Not Started",
+      "notes": "Application, pipeline, onboarding map"
+    },
+    {
+      "milestone": "Tracking and reporting ready before traffic",
+      "targetDay": 35,
+      "owner": "Abby + Jayson",
+      "status": "Not Started",
+      "notes": "GTM, GA4, Meta, GHL source data"
+    },
+    {
+      "milestone": "Content and ad creative ready",
+      "targetDay": 42,
+      "owner": "Abby + Oren",
+      "status": "Not Started",
+      "notes": "Social, static ads, scripts"
+    },
+    {
+      "milestone": "Soft launch reaches 75–125 registrations",
+      "targetDay": 49,
+      "owner": "Jayson + Abby",
+      "status": "Not Started",
+      "notes": "Warm list and organic push"
+    },
+    {
+      "milestone": "Paid launch reaches 250–325 registrations",
+      "targetDay": 56,
+      "owner": "Abby",
+      "status": "Not Started",
+      "notes": "Optimize only after enough data"
+    },
+    {
+      "milestone": "Webinar day reaches 500+ registrations",
+      "targetDay": 60,
+      "owner": "All",
+      "status": "Not Started",
+      "notes": "Segment leads immediately after webinar"
+    }
+  ],
+  "plan": [
+    {
+      "Day": 1,
+      "Date": "2026-06-18",
+      "Phase": "Strategy / CRM Foundation",
+      "Owner": "Jayson + Abby",
+      "Primary Focus": "Lock funnel map",
+      "Action Steps": "Map traffic source > Finding Winners page > GHL > BigMarker > nurture > webinar > OWG > investor conversation.",
+      "Deliverable": "One-page funnel map",
+      "Status": "Done",
+      "Notes": null
+    },
+    {
+      "Day": 2,
+      "Date": "2026-06-19",
+      "Phase": "Strategy / CRM Foundation",
+      "Owner": "Jayson",
+      "Primary Focus": "Confirm domain strategy",
+      "Action Steps": "Confirm roles for intersectioncapital.com/finding-winners, orenworkinggroup.com, and Orenklaff.com.",
+      "Deliverable": "Domain routing decision log",
+      "Status": "Not Started",
+      "Notes": "Do not make Orenklaff.com a blocker."
+    },
+    {
+      "Day": 3,
+      "Date": "2026-06-20",
+      "Phase": "Strategy / CRM Foundation",
+      "Owner": "Jayson",
+      "Primary Focus": "Audit GHL workspace",
+      "Action Steps": "Review email sending domain, users, calendars, pipelines, custom fields, forms, automations, and reporting access.",
+      "Deliverable": "GHL audit notes",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 4,
+      "Date": "2026-06-21",
+      "Phase": "Strategy / CRM Foundation",
+      "Owner": "Jayson",
+      "Primary Focus": "Define CRM stages",
+      "Action Steps": "Create draft stages from New Lead through Registered, Attended, Hand Raise, OWG Member, Investor Conversation, Qualified Investor.",
+      "Deliverable": "Pipeline stage list",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 5,
+      "Date": "2026-06-22",
+      "Phase": "Strategy / CRM Foundation",
+      "Owner": "Jayson",
+      "Primary Focus": "Create fields and tags",
+      "Action Steps": "UTM fields, attendance, hand raise, OWG interest, owners",
+      "Deliverable": "Field and tag schema",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 6,
+      "Date": "2026-06-23",
+      "Phase": "Landing Page + Registration",
+      "Owner": "Jayson",
+      "Primary Focus": "Build GHL registration form",
+      "Action Steps": "Create form with first name, last name, email, phone, SMS consent, source tracking fields.",
+      "Deliverable": "GHL registration form",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 7,
+      "Date": "2026-06-23",
+      "Phase": "Strategy / CRM Foundation",
+      "Owner": "Abby",
+      "Primary Focus": "Landing page wireframe",
+      "Action Steps": "Draft hero, what they learn, Oren bio, who it's for, details, form, credibility, FAQ, CTA.",
+      "Deliverable": "LP wireframe",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 8,
+      "Date": "2026-06-24",
+      "Phase": "Strategy / CRM Foundation",
+      "Owner": "Oren",
+      "Primary Focus": "Review foundation",
+      "Action Steps": "Approve funnel, domain structure, CRM stages, fields, tags, and LP wireframe direction.",
+      "Deliverable": "Approval checkpoint",
+      "Status": "Not Started",
+      "Notes": "Batch approval only."
+    },
+    {
+      "Day": 9,
+      "Date": "2026-06-26",
+      "Phase": "Landing Page + Registration",
+      "Owner": "Abby",
+      "Primary Focus": "Build first LP version",
+      "Action Steps": "Build simple HTML/Vercel page ",
+      "Deliverable": "LP v1 preview",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 10,
+      "Date": "2026-06-27",
+      "Phase": "Landing Page + Registration",
+      "Owner": "Abby",
+      "Primary Focus": "Create confirmation page",
+      "Action Steps": "Build You're In page with webinar time, next steps, calendar prompt, social share prompt.",
+      "Deliverable": "Confirmation page",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 11,
+      "Date": "2026-06-28",
+      "Phase": "Landing Page + Registration",
+      "Owner": "Jayson",
+      "Primary Focus": "Connect form to CRM",
+      "Action Steps": "Connect form submit to contact creation, tags, pipeline stage, and UTM/source capture.",
+      "Deliverable": "GHL contact routing live",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 12,
+      "Date": "2026-06-29",
+      "Phase": "Landing Page + Registration",
+      "Owner": "Jayson",
+      "Primary Focus": "Set up BigMarker webinar",
+      "Action Steps": "Create webinar title, date/time, presenter info, join settings, reminders, calendar functionality.",
+      "Deliverable": "BigMarker event created",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 13,
+      "Date": "2026-06-30",
+      "Phase": "Landing Page + Registration",
+      "Owner": "Jayson",
+      "Primary Focus": "Choose registration path",
+      "Action Steps": "Select one primary path: GHL form to BigMarker or BigMarker embed to GHL. Test sync.",
+      "Deliverable": "Registration integration decision",
+      "Status": "Not Started",
+      "Notes": "Avoid parallel registration paths."
+    },
+    {
+      "Day": 14,
+      "Date": "2026-07-01",
+      "Phase": "Landing Page + Registration",
+      "Owner": "Jayson + Abby",
+      "Primary Focus": "Test end-to-end registration",
+      "Action Steps": "Test LP > registration > GHL contact > BigMarker registration > confirmation page > tags/source fields.",
+      "Deliverable": "Registration QA passed",
+      "Status": "Not Started",
+      "Notes": "No paid traffic before this works."
+    },
+    {
+      "Day": 15,
+      "Date": "2026-07-02",
+      "Phase": "Email Architecture",
+      "Owner": "Jayson",
+      "Primary Focus": "Draft email map",
+      "Action Steps": "Map registration confirmation, nurture, invite, BigMarker reminders, no-show, attended, hand raise, OWG onboarding.",
+      "Deliverable": "Email flow map",
+      "Status": "Done",
+      "Notes": null
+    },
+    {
+      "Day": 17,
+      "Date": "2026-07-04",
+      "Phase": "Email Architecture",
+      "Owner": "Jayson",
+      "Primary Focus": "Build GHL email templates",
+      "Action Steps": "Create reusable template with header, footer, CTA button, compliance footer, merge fields.",
+      "Deliverable": "GHL email template",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 18,
+      "Date": "2026-07-05",
+      "Phase": "Email Architecture",
+      "Owner": "Oren + Jayson",
+      "Primary Focus": "Registration confirmation email",
+      "Action Steps": "Oren drafts; Jayson loads. Confirm expectations and BigMarker join details.",
+      "Deliverable": "You're In email live",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 19,
+      "Date": "2026-07-06",
+      "Phase": "Email Architecture",
+      "Owner": "Oren",
+      "Primary Focus": "Write nurture emails 1-2",
+      "Action Steps": "Draft credibility email and what-attendees-will-learn email.",
+      "Deliverable": "Nurture #1-2 copy",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 20,
+      "Date": "2026-07-07",
+      "Phase": "Email Architecture",
+      "Owner": "Oren",
+      "Primary Focus": "Write nurture emails 3-4",
+      "Action Steps": "Draft key insight teaser and final attendance push.",
+      "Deliverable": "Nurture #3-4 copy",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 21,
+      "Date": "2026-07-08",
+      "Phase": "Email Architecture",
+      "Owner": "Jayson",
+      "Primary Focus": "Load nurture sequence",
+      "Action Steps": "Load all four nurture emails into GHL with simple timing and suppression rules.",
+      "Deliverable": "Pre-webinar nurture workflow",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 22,
+      "Date": "2026-07-09",
+      "Phase": "OWG Exoskeleton",
+      "Owner": "Abby + Oren",
+      "Primary Focus": "Define OWG offer",
+      "Action Steps": "Document price, ideal member, benefits, meeting cadence, portal access, investment access, and application flow.",
+      "Deliverable": "OWG offer brief",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 23,
+      "Date": "2026-07-10",
+      "Phase": "OWG Exoskeleton",
+      "Owner": "Abby",
+      "Primary Focus": "Build OWG application page",
+      "Action Steps": "Create simple application/interest page; prioritize CTA and form over portal polish.",
+      "Deliverable": "OWG application page",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 24,
+      "Date": "2026-07-11",
+      "Phase": "OWG Exoskeleton",
+      "Owner": "Jayson",
+      "Primary Focus": "Create OWG pipeline",
+      "Action Steps": "Set stages: Interested, Application Started, Submitted, Call Needed, Approved, Paid, Onboarded.",
+      "Deliverable": "OWG pipeline in GHL",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 25,
+      "Date": "2026-07-12",
+      "Phase": "OWG Exoskeleton",
+      "Owner": "Jayson",
+      "Primary Focus": "Create hand-raise workflow",
+      "Action Steps": "Tag high-intent contacts, move stage, notify team, create task, send immediate follow-up.",
+      "Deliverable": "Hand raise workflow",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 26,
+      "Date": "2026-07-13",
+      "Phase": "OWG Exoskeleton",
+      "Owner": "Jayson",
+      "Primary Focus": "Create no-show workflow",
+      "Action Steps": "Missed webinar 3 emails, , continued nurture.",
+      "Deliverable": "No-show workflow",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 27,
+      "Date": "2026-07-14",
+      "Phase": "OWG Exoskeleton",
+      "Owner": "Jayson",
+      "Primary Focus": "Create attended/no-hand-raise workflow",
+      "Action Steps": "Send recap, fit email, and application reminder to attendees who do not apply.",
+      "Deliverable": "Attended/no-hand-raise workflow",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 28,
+      "Date": "2026-07-15",
+      "Phase": "OWG Exoskeleton",
+      "Owner": "Oren + Jayson",
+      "Primary Focus": "Map OWG onboarding emails",
+      "Action Steps": "Outline welcome, community access, weekly meeting details, resources, first-week success plan.",
+      "Deliverable": "OWG onboarding map",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 29,
+      "Date": "2026-07-16",
+      "Phase": "Tracking + Reporting",
+      "Owner": "Abby",
+      "Primary Focus": "Install GTM/GA4/Meta Pixel",
+      "Action Steps": "Install tracking on Finding Winners page and confirmation page.",
+      "Deliverable": "Tracking installed",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 30,
+      "Date": "2026-07-17",
+      "Phase": "Tracking + Reporting",
+      "Owner": "Abby",
+      "Primary Focus": "Create conversion events",
+      "Action Steps": "Track page view, registration submit, confirmation page view, application click, application submit.",
+      "Deliverable": "Conversion events",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 31,
+      "Date": "2026-07-18",
+      "Phase": "Tracking + Reporting",
+      "Owner": "Abby",
+      "Primary Focus": "Create UTM rules",
+      "Action Steps": "Define UTM source, medium, campaign, content, audience naming convention.",
+      "Deliverable": "UTM naming doc",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 32,
+      "Date": "2026-07-19",
+      "Phase": "Tracking + Reporting",
+      "Owner": "Jayson + Abby",
+      "Primary Focus": "Create GHL reporting dashboard",
+      "Action Steps": "Views for registrations by source, attendees, no-shows, hand raises, applications, calls, members, investor conversations.",
+      "Deliverable": "GHL dashboard draft",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 33,
+      "Date": "2026-07-20",
+      "Phase": "Tracking + Reporting",
+      "Owner": "Abby",
+      "Primary Focus": "Test source tracking",
+      "Action Steps": "Submit test registrations from email, LinkedIn, Meta, and direct. Confirm source data flows into GHL.",
+      "Deliverable": "Tracking QA log",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 34,
+      "Date": "2026-07-21",
+      "Phase": "Tracking + Reporting",
+      "Owner": "Abby",
+      "Primary Focus": "Build daily launch dashboard",
+      "Action Steps": "Create simple daily report for spend, visitors, registrations, CPR, source, show rate, hand raises, applications.",
+      "Deliverable": "Daily launch report template",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 35,
+      "Date": "2026-07-22",
+      "Phase": "Tracking + Reporting",
+      "Owner": "Jayson + Abby",
+      "Primary Focus": "Full system QA",
+      "Action Steps": "Test LP, form, confirmation, GHL workflow, BigMarker registration, reminders, tags, source tracking, application CTA.",
+      "Deliverable": "Full QA passed",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 36,
+      "Date": "2026-07-23",
+      "Phase": "Content + Creative",
+      "Owner": "Abby",
+      "Primary Focus": "Build organic content calendar",
+      "Action Steps": "Plan LinkedIn/social problem posts, insight posts, story posts, invites, and last-chance posts.",
+      "Deliverable": "3-week content calendar",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 37,
+      "Date": "2026-07-24",
+      "Phase": "Content + Creative",
+      "Owner": "Oren + Abby",
+      "Primary Focus": "Draft ad angles",
+      "Action Steps": "Create four angles: miss winners, Oren evaluation, non-obvious deals, what OWG sees early.",
+      "Deliverable": "Ad angle sheet",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 38,
+      "Date": "2026-07-25",
+      "Phase": "Content + Creative",
+      "Owner": "Abby",
+      "Primary Focus": "Create static ads",
+      "Action Steps": "Create 2-4 simple static ads using approved angles. Avoid overproduction.",
+      "Deliverable": "Static ad set",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 39,
+      "Date": "2026-07-26",
+      "Phase": "Content + Creative",
+      "Owner": "Abby + Oren",
+      "Primary Focus": "Create video scripts",
+      "Action Steps": "Write 15 sec, 30 sec, and 60 sec scripts with one problem and one CTA each.",
+      "Deliverable": "Video script brief",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 40,
+      "Date": "2026-07-27",
+      "Phase": "Content + Creative",
+      "Owner": "Oren + Abby",
+      "Primary Focus": "Record short videos",
+      "Action Steps": "Record simple videos with clean audio. Prioritize clarity over production value.",
+      "Deliverable": "Video footage",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 41,
+      "Date": "2026-07-28",
+      "Phase": "Content + Creative",
+      "Owner": "Abby",
+      "Primary Focus": "Build ad campaigns in draft",
+      "Action Steps": "Create Meta campaigns, cold audience, retargeting, and conversion settings in draft mode.",
+      "Deliverable": "Draft ad campaign",
+      "Status": "Not Started",
+      "Notes": "Do not launch yet."
+    },
+    {
+      "Day": 42,
+      "Date": "2026-07-29",
+      "Phase": "Content + Creative",
+      "Owner": "Oren",
+      "Primary Focus": "Approve creative and content",
+      "Action Steps": "Approve ad angles, static ads, video scripts, and social calendar.",
+      "Deliverable": "Creative approval",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 43,
+      "Date": "2026-07-30",
+      "Phase": "Soft Launch",
+      "Owner": "Jayson + Abby",
+      "Primary Focus": "Soft launch page",
+      "Action Steps": "Send LP to internal test group; fix copy, mobile, form, and tracking issues.",
+      "Deliverable": "Soft launch QA notes",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 44,
+      "Date": "2026-07-31",
+      "Phase": "Soft Launch",
+      "Owner": "Jayson",
+      "Primary Focus": "Send invite email 1",
+      "Action Steps": "Send webinar announcement to warm list. Keep CTA clear and suppress registrants afterward.",
+      "Deliverable": "Warm invite #1 sent",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 45,
+      "Date": "2026-08-01",
+      "Phase": "Soft Launch",
+      "Owner": "Abby",
+      "Primary Focus": "First organic push",
+      "Action Steps": "Publish first LinkedIn/social post from Oren and company accounts; CTA to Finding Winners page.",
+      "Deliverable": "Organic post live",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 46,
+      "Date": "2026-08-02",
+      "Phase": "Soft Launch",
+      "Owner": "Jayson + Abby",
+      "Primary Focus": "Check registrations and source quality",
+      "Action Steps": "Confirm registrants flow correctly, sources populate, and duplicate contacts are not created.",
+      "Deliverable": "Soft launch registration check",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 47,
+      "Date": "2026-08-03",
+      "Phase": "Soft Launch",
+      "Owner": "Jayson",
+      "Primary Focus": "Send invite email 2",
+      "Action Steps": "Send problem/opportunity email to non-registrants only.",
+      "Deliverable": "Warm invite #2 sent",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 48,
+      "Date": "2026-08-04",
+      "Phase": "Soft Launch",
+      "Owner": "Abby",
+      "Primary Focus": "Start connection outreach",
+      "Action Steps": "Reach partners, friendly investors, podcast contacts, warm network, and existing community members.",
+      "Deliverable": "Outreach list activated",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 49,
+      "Date": "2026-08-05",
+      "Phase": "Soft Launch",
+      "Owner": "Jayson + Abby",
+      "Primary Focus": "Soft launch review",
+      "Action Steps": "Review registrations, LP CVR, email clicks, broken links, common questions, and lead quality.",
+      "Deliverable": "Soft launch report",
+      "Status": "Not Started",
+      "Notes": "Target: 75-125 registrations."
+    },
+    {
+      "Day": 50,
+      "Date": "2026-08-06",
+      "Phase": "Paid Launch",
+      "Owner": "Abby",
+      "Primary Focus": "Launch ads carefully",
+      "Action Steps": "Launch ads at controlled budget after confirming pixel and GHL source tracking.",
+      "Deliverable": "Ads live",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 51,
+      "Date": "2026-08-07",
+      "Phase": "Paid Launch",
+      "Owner": "Abby",
+      "Primary Focus": "Monitor first ad data",
+      "Action Steps": "Check spend, CTR, CPC, LP conversion, CPR, and lead quality. Do not overreact too early.",
+      "Deliverable": "Ad monitoring notes",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 52,
+      "Date": "2026-08-08",
+      "Phase": "Paid Launch",
+      "Owner": "Jayson",
+      "Primary Focus": "Send invite email 3",
+      "Action Steps": "Send educational insight email to non-registrants with one clear CTA.",
+      "Deliverable": "Warm invite #3 sent",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 53,
+      "Date": "2026-08-09",
+      "Phase": "Paid Launch",
+      "Owner": "Abby + Oren",
+      "Primary Focus": "Publish Oren insight post",
+      "Action Steps": "Share one useful idea from the webinar without giving away everything.",
+      "Deliverable": "Insight post live",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 54,
+      "Date": "2026-08-10",
+      "Phase": "Paid Launch",
+      "Owner": "Abby",
+      "Primary Focus": "Optimize LP only if needed",
+      "Action Steps": "If conversion is weak, adjust headline, CTA, or hero. Do not redesign the page.",
+      "Deliverable": "LP optimization note",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 55,
+      "Date": "2026-08-11",
+      "Phase": "Paid Launch",
+      "Owner": "Abby",
+      "Primary Focus": "Scale what works",
+      "Action Steps": "Pause obvious underperformers and push budget to best creative/audience combinations.",
+      "Deliverable": "Ad optimization actions",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 56,
+      "Date": "2026-08-12",
+      "Phase": "Paid Launch",
+      "Owner": "Abby",
+      "Primary Focus": "Mid-launch report",
+      "Action Steps": "Report registrations, source breakdown, CPR, page CVR, email performance, and projected final registrations.",
+      "Deliverable": "Mid-launch report",
+      "Status": "Not Started",
+      "Notes": "Target: 250-325 registrations."
+    },
+    {
+      "Day": 57,
+      "Date": "2026-08-13",
+      "Phase": "Final Webinar Push",
+      "Owner": "Jayson",
+      "Primary Focus": "Send final invite email",
+      "Action Steps": "Send social-proof/last-chance invite to non-registrants only.",
+      "Deliverable": "Final invite sent",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 58,
+      "Date": "2026-08-14",
+      "Phase": "Final Webinar Push",
+      "Owner": "Abby + Oren",
+      "Primary Focus": "Final organic push",
+      "Action Steps": "Publish final post: what will be covered, who should attend, why to join live.",
+      "Deliverable": "Final organic post live",
+      "Status": "Not Started",
+      "Notes": "Target: 350-425 registrations."
+    },
+    {
+      "Day": 59,
+      "Date": "2026-08-15",
+      "Phase": "Final Webinar Push",
+      "Owner": "Jayson + Abby",
+      "Primary Focus": "Final systems check",
+      "Action Steps": "Check BigMarker reminders, join links, GHL workflows, hand-raise forms, OWG page, tracking, replay plan, notifications.",
+      "Deliverable": "Final systems QA passed",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "Day": 60,
+      "Date": "2026-08-16",
+      "Phase": "Final Webinar Push",
+      "Owner": "All",
+      "Primary Focus": "Webinar day and segmentation",
+      "Action Steps": "Monitor registration, delivery, attendance, hand raises, GHL segmentation, and post-webinar workflow triggers.",
+      "Deliverable": "Webinar complete and segments triggered",
+      "Status": "Not Started",
+      "Notes": "Target: 500+ registrations."
+    }
+  ],
+  "workflows": [
+    {
+      "#": 1,
+      "Workflow": "Registration Workflow",
+      "Trigger": "Finding Winners form submit",
+      "Primary Actions": "Create/update contact; add webinar/date/source tags; capture UTMs; move to Webinar Registered; send confirmation; register/sync to BigMarker.",
+      "Owner": "Jayson",
+      "Build By Day": 14,
+      "Test By Day": 14,
+      "Suppress / Exit Rules": "Exit invite sequence once registered",
+      "Success Check": "Test contact appears in GHL and BigMarker with correct source",
+      "Status": "Not Started",
+      "Notes": "Highest-priority workflow."
+    },
+    {
+      "#": 2,
+      "Workflow": "Pre-Webinar Nurture",
+      "Trigger": "Contact becomes Webinar Registered",
+      "Primary Actions": "Send nurture emails; maintain event link visibility; keep registrants suppressed from non-registrant invites.",
+      "Owner": "Jayson",
+      "Build By Day": 21,
+      "Test By Day": 35,
+      "Suppress / Exit Rules": "Stop after webinar date or if unsubscribed",
+      "Success Check": "All four emails loaded and timing works",
+      "Status": "Not Started",
+      "Notes": "Use GHL for nurture; BigMarker for join reminders."
+    },
+    {
+      "#": 3,
+      "Workflow": "Non-Registrant Invite",
+      "Trigger": "Warm list segment and not registered",
+      "Primary Actions": "Send invite emails; suppress registrants; tag clicks; update source/interest fields when possible.",
+      "Owner": "Jayson",
+      "Build By Day": 44,
+      "Test By Day": 46,
+      "Suppress / Exit Rules": "Exit when registered",
+      "Success Check": "No registered contacts receive invite reminders",
+      "Status": "Not Started",
+      "Notes": "Warm list first."
+    },
+    {
+      "#": 4,
+      "Workflow": "BigMarker Reminder Support",
+      "Trigger": "BigMarker registration confirmed",
+      "Primary Actions": "BigMarker sends 1 day, 1 hour, 10 minute reminders with join/calendar links.",
+      "Owner": "Jayson",
+      "Build By Day": 12,
+      "Test By Day": 59,
+      "Suppress / Exit Rules": "Do not duplicate with heavy GHL reminders",
+      "Success Check": "Test registrant receives BigMarker join link",
+      "Status": "Not Started",
+      "Notes": "Keep reminders clean."
+    },
+    {
+      "#": 5,
+      "Workflow": "No-Show Workflow",
+      "Trigger": "Registered but did not attend",
+      "Primary Actions": "Send replay or sorry-we-missed-you; include soft OWG CTA; continue nurture.",
+      "Owner": "Jayson",
+      "Build By Day": 26,
+      "Test By Day": 59,
+      "Suppress / Exit Rules": "Exit if applies or books a call",
+      "Success Check": "No-shows get follow-up within 24 hours",
+      "Status": "Not Started",
+      "Notes": "Requires attendance sync/export."
+    },
+    {
+      "#": 6,
+      "Workflow": "Attended / No Hand Raise",
+      "Trigger": "Attended but no application, click, or hand raise",
+      "Primary Actions": "Send recap, resources, OWG fit email, and application reminder.",
+      "Owner": "Jayson",
+      "Build By Day": 27,
+      "Test By Day": 59,
+      "Suppress / Exit Rules": "Exit if applies, hand raises, or books call",
+      "Success Check": "Attendees get correct sequence only once",
+      "Status": "Not Started",
+      "Notes": null
+    },
+    {
+      "#": 7,
+      "Workflow": "Hand Raise / High Intent",
+      "Trigger": "Hand raise, application click, application submit, or strong intent action",
+      "Primary Actions": "Notify team; create task; assign owner; move stage; send immediate next-step email.",
+      "Owner": "Jayson",
+      "Build By Day": 25,
+      "Test By Day": 59,
+      "Suppress / Exit Rules": "Exit after assigned and next step completed",
+      "Success Check": "Team receives notification immediately",
+      "Status": "Not Started",
+      "Notes": "Could include investor interest routing."
+    },
+    {
+      "#": 8,
+      "Workflow": "OWG Onboarding",
+      "Trigger": "Paid or approved OWG member",
+      "Primary Actions": "Send welcome, portal/community access, weekly meeting details, resources, first-week plan; create personal welcome task.",
+      "Owner": "Jayson",
+      "Build By Day": 28,
+      "Test By Day": 60,
+      "Suppress / Exit Rules": "Exit after onboarding complete",
+      "Success Check": "Member receives access and next steps",
+      "Status": "Not Started",
+      "Notes": "Portal can be simple at launch."
+    },
+    {
+      "#": 9,
+      "Workflow": "Investor Interest",
+      "Trigger": "$100K+ check size, investment interest, or direct request",
+      "Primary Actions": "Move to Investor Conversation; notify Oren/team; create priority task; send appropriate next-step email.",
+      "Owner": "Jayson",
+      "Build By Day": 28,
+      "Test By Day": 60,
+      "Suppress / Exit Rules": "Exit after qualified, closed, or lost",
+      "Success Check": "High-value leads do not sit unassigned",
+      "Status": "Not Started",
+      "Notes": "Keep separate from generic OWG leads."
+    }
+  ],
+  "assets": [
+    {
+      "Category": "Pages & Forms",
+      "Asset": "Finding Winners landing page at intersectioncapital.com/finding-winners",
+      "Owner": "Abby",
+      "Status": "Not Started",
+      "Notes": "Build HTML/Vercel; form above fold."
+    },
+    {
+      "Category": "Pages & Forms",
+      "Asset": "Confirmation page /finding-winners-youre-in",
+      "Owner": "Abby",
+      "Status": "Not Started",
+      "Notes": "Includes next steps and calendar prompt."
+    },
+    {
+      "Category": "Pages & Forms",
+      "Asset": "GHL registration form: name, email, phone, SMS opt-in",
+      "Owner": "Jayson",
+      "Status": "Not Started",
+      "Notes": "Capture UTMs/source."
+    },
+    {
+      "Category": "Pages & Forms",
+      "Asset": "OWG application / interest page on orenworkinggroup.com",
+      "Owner": "Abby",
+      "Status": "Not Started",
+      "Notes": "Minimum viable application, not full portal."
+    },
+    {
+      "Category": "Pages & Forms",
+      "Asset": "Replay page placeholder",
+      "Owner": "Abby",
+      "Status": "Not Started",
+      "Notes": "Can go live after webinar."
+    },
+    {
+      "Category": "GHL / CRM",
+      "Asset": "GHL account audit",
+      "Owner": "Jayson",
+      "Status": "Not Started",
+      "Notes": "Workspace, users, domains, forms, automations."
+    },
+    {
+      "Category": "GHL / CRM",
+      "Asset": "CRM pipeline stages",
+      "Owner": "Jayson",
+      "Status": "Not Started",
+      "Notes": "Lead through investor conversation."
+    },
+    {
+      "Category": "GHL / CRM",
+      "Asset": "Custom fields and tags",
+      "Owner": "Jayson",
+      "Status": "Not Started",
+      "Notes": "Webinar, UTM, attendance, OWG, investor data."
+    },
+    {
+      "Category": "GHL / CRM",
+      "Asset": "Registration workflow",
+      "Owner": "Jayson",
+      "Status": "Not Started",
+      "Notes": "Form submit to CRM, confirmation, BigMarker sync."
+    },
+    {
+      "Category": "GHL / CRM",
+      "Asset": "Pre-webinar nurture workflow",
+      "Owner": "Jayson",
+      "Status": "Not Started",
+      "Notes": "4-email sequence."
+    },
+    {
+      "Category": "GHL / CRM",
+      "Asset": "Non-registrant invite workflow",
+      "Owner": "Jayson",
+      "Status": "Not Started",
+      "Notes": "Suppress registered contacts."
+    },
+    {
+      "Category": "GHL / CRM",
+      "Asset": "No-show workflow",
+      "Owner": "Jayson",
+      "Status": "Not Started",
+      "Notes": "Replay / soft OWG CTA."
+    },
+    {
+      "Category": "GHL / CRM",
+      "Asset": "Attended no-hand-raise workflow",
+      "Owner": "Jayson",
+      "Status": "Not Started",
+      "Notes": "Recap and OWG fit follow-up."
+    },
+    {
+      "Category": "GHL / CRM",
+      "Asset": "Hand raise workflow",
+      "Owner": "Jayson",
+      "Status": "Not Started",
+      "Notes": "Notify, assign, task, follow-up."
+    },
+    {
+      "Category": "GHL / CRM",
+      "Asset": "OWG onboarding workflow",
+      "Owner": "Jayson",
+      "Status": "Not Started",
+      "Notes": "Post-payment / accepted member."
+    },
+    {
+      "Category": "Email — Pre-Webinar",
+      "Asset": "Registration confirmation — You're In",
+      "Owner": "Oren + Jayson",
+      "Status": "Not Started",
+      "Notes": "Oren copy, Jayson loads."
+    },
+    {
+      "Category": "Email — Pre-Webinar",
+      "Asset": "Nurture #1: Oren credibility",
+      "Owner": "Oren",
+      "Status": "Not Started",
+      "Notes": "5-7 days before or evergreen timing."
+    },
+    {
+      "Category": "Email — Pre-Webinar",
+      "Asset": "Nurture #2: What attendees will learn",
+      "Owner": "Oren",
+      "Status": "Not Started",
+      "Notes": "3-4 days before or evergreen timing."
+    },
+    {
+      "Category": "Email — Pre-Webinar",
+      "Asset": "Nurture #3: Key insight teaser",
+      "Owner": "Oren",
+      "Status": "Not Started",
+      "Notes": "2 days before."
+    },
+    {
+      "Category": "Email — Pre-Webinar",
+      "Asset": "Nurture #4: Final attendance push",
+      "Owner": "Oren",
+      "Status": "Not Started",
+      "Notes": "Morning-of or final push."
+    },
+    {
+      "Category": "Email — Invite",
+      "Asset": "Invite #1: webinar announcement",
+      "Owner": "Oren + Jayson",
+      "Status": "Not Started",
+      "Notes": "Warm list."
+    },
+    {
+      "Category": "Email — Invite",
+      "Asset": "Invite #2: problem/opportunity angle",
+      "Owner": "Oren + Jayson",
+      "Status": "Not Started",
+      "Notes": "Non-registrants only."
+    },
+    {
+      "Category": "Email — Invite",
+      "Asset": "Invite #3: educational insight",
+      "Owner": "Oren + Jayson",
+      "Status": "Not Started",
+      "Notes": "Non-registrants only."
+    },
+    {
+      "Category": "Email — Invite",
+      "Asset": "Final invite: social proof / last chance",
+      "Owner": "Oren + Jayson",
+      "Status": "Not Started",
+      "Notes": "Non-registrants only."
+    },
+    {
+      "Category": "Email — Post-Webinar",
+      "Asset": "No-show #1: Sorry we missed you",
+      "Owner": "Oren + Jayson",
+      "Status": "Not Started",
+      "Notes": "Immediate or within 24 hours."
+    },
+    {
+      "Category": "Email — Post-Webinar",
+      "Asset": "Attended #1: Thanks for joining",
+      "Owner": "Oren + Jayson",
+      "Status": "Not Started",
+      "Notes": "Resources and next step."
+    },
+    {
+      "Category": "Email — Post-Webinar",
+      "Asset": "Attended no-hand-raise #2: Is OWG right for you?",
+      "Owner": "Oren + Jayson",
+      "Status": "Not Started",
+      "Notes": "3 days after."
+    },
+    {
+      "Category": "Email — Post-Webinar",
+      "Asset": "Applications still open",
+      "Owner": "Oren + Jayson",
+      "Status": "Not Started",
+      "Notes": "7 days after."
+    },
+    {
+      "Category": "BigMarker",
+      "Asset": "Webinar event created",
+      "Owner": "Jayson",
+      "Status": "Not Started",
+      "Notes": "Title, date, time, presenter, settings."
+    },
+    {
+      "Category": "BigMarker",
+      "Asset": "Webinar join link and calendar function tested",
+      "Owner": "Jayson",
+      "Status": "Not Started",
+      "Notes": "Test as real registrant."
+    },
+    {
+      "Category": "BigMarker",
+      "Asset": "Reminder #1: 1 day before",
+      "Owner": "Jayson",
+      "Status": "Not Started",
+      "Notes": "BigMarker platform email."
+    },
+    {
+      "Category": "BigMarker",
+      "Asset": "Reminder #2: 1 hour before",
+      "Owner": "Jayson",
+      "Status": "Not Started",
+      "Notes": "BigMarker platform email."
+    },
+    {
+      "Category": "BigMarker",
+      "Asset": "Reminder #3: 10 minutes before / We're live",
+      "Owner": "Jayson",
+      "Status": "Not Started",
+      "Notes": "BigMarker platform email."
+    },
+    {
+      "Category": "SMS",
+      "Asset": "SMS compliance decision",
+      "Owner": "Jayson",
+      "Status": "Not Started",
+      "Notes": "Optional; do not block email launch."
+    },
+    {
+      "Category": "SMS",
+      "Asset": "Registration confirmation text",
+      "Owner": "Jayson",
+      "Status": "Not Started",
+      "Notes": "Only if compliance is ready."
+    },
+    {
+      "Category": "SMS",
+      "Asset": "24-hour / 1-hour / 10-min reminder texts",
+      "Owner": "Jayson",
+      "Status": "Not Started",
+      "Notes": "Optional supplement only."
+    },
+    {
+      "Category": "Tracking",
+      "Asset": "GTM container installed",
+      "Owner": "Abby",
+      "Status": "Not Started",
+      "Notes": "LP and confirmation page."
+    },
+    {
+      "Category": "Tracking",
+      "Asset": "GA4 pageview and registration events",
+      "Owner": "Abby",
+      "Status": "Not Started",
+      "Notes": "Registration conversion."
+    },
+    {
+      "Category": "Tracking",
+      "Asset": "Meta Pixel and conversion events",
+      "Owner": "Abby",
+      "Status": "Not Started",
+      "Notes": "Registration and application events."
+    },
+    {
+      "Category": "Tracking",
+      "Asset": "Microsoft Clarity installed",
+      "Owner": "Abby",
+      "Status": "Not Started",
+      "Notes": "Useful for page behavior."
+    },
+    {
+      "Category": "Tracking",
+      "Asset": "UTM naming convention",
+      "Owner": "Abby",
+      "Status": "Not Started",
+      "Notes": "Applied to ad and email links."
+    },
+    {
+      "Category": "Tracking",
+      "Asset": "Full tracking QA",
+      "Owner": "Abby",
+      "Status": "Not Started",
+      "Notes": "Test form submissions by source."
+    },
+    {
+      "Category": "Ads",
+      "Asset": "Meta campaign structure in draft",
+      "Owner": "Abby",
+      "Status": "Not Started",
+      "Notes": "Cold and retargeting."
+    },
+    {
+      "Category": "Ads",
+      "Asset": "Static ads 1:1 and 4:5",
+      "Owner": "Abby",
+      "Status": "Not Started",
+      "Notes": "2-4 variations max."
+    },
+    {
+      "Category": "Ads",
+      "Asset": "Video ad scripts",
+      "Owner": "Abby + Oren",
+      "Status": "Not Started",
+      "Notes": "15/30/60 seconds."
+    },
+    {
+      "Category": "Ads",
+      "Asset": "Video footage recorded",
+      "Owner": "Abby + Oren",
+      "Status": "Not Started",
+      "Notes": "Clean audio matters."
+    },
+    {
+      "Category": "Social / Content",
+      "Asset": "Organic content calendar",
+      "Owner": "Abby",
+      "Status": "Not Started",
+      "Notes": "3 weeks."
+    },
+    {
+      "Category": "Social / Content",
+      "Asset": "LinkedIn problem post",
+      "Owner": "Abby + Oren",
+      "Status": "Not Started",
+      "Notes": "Why most investors miss winners."
+    },
+    {
+      "Category": "Social / Content",
+      "Asset": "LinkedIn insight post",
+      "Owner": "Abby + Oren",
+      "Status": "Not Started",
+      "Notes": "What attendees will learn."
+    },
+    {
+      "Category": "Social / Content",
+      "Asset": "Final last-chance post",
+      "Owner": "Abby + Oren",
+      "Status": "Not Started",
+      "Notes": "Join live CTA."
+    },
+    {
+      "Category": "Webinar Assets",
+      "Asset": "Webinar slide deck outline",
+      "Owner": "Oren",
+      "Status": "Not Started",
+      "Notes": "Core story and OWG CTA flow."
+    },
+    {
+      "Category": "Webinar Assets",
+      "Asset": "Webinar slide deck final",
+      "Owner": "Oren",
+      "Status": "Not Started",
+      "Notes": "Approved before final push."
+    },
+    {
+      "Category": "Webinar Assets",
+      "Asset": "OWG application CTA slide",
+      "Owner": "Oren",
+      "Status": "Not Started",
+      "Notes": "Close of webinar."
+    },
+    {
+      "Category": "Reporting",
+      "Asset": "Daily launch dashboard",
+      "Owner": "Abby",
+      "Status": "Not Started",
+      "Notes": "Spend, registrations, source, CPR."
+    },
+    {
+      "Category": "Reporting",
+      "Asset": "GHL source report",
+      "Owner": "Jayson + Abby",
+      "Status": "Not Started",
+      "Notes": "Registrations by source."
+    },
+    {
+      "Category": "Reporting",
+      "Asset": "Post-webinar funnel report",
+      "Owner": "Abby",
+      "Status": "Not Started",
+      "Notes": "CVR, CPR, attendance, applications, members."
+    },
+    {
+      "Category": "OWG Onboarding",
+      "Asset": "Welcome email",
+      "Owner": "Oren + Jayson",
+      "Status": "Not Started",
+      "Notes": "Post-payment."
+    },
+    {
+      "Category": "OWG Onboarding",
+      "Asset": "Community access email",
+      "Owner": "Oren + Jayson",
+      "Status": "Not Started",
+      "Notes": "Portal/access."
+    },
+    {
+      "Category": "OWG Onboarding",
+      "Asset": "Weekly meeting details email",
+      "Owner": "Oren + Jayson",
+      "Status": "Not Started",
+      "Notes": "Calendar expectations."
+    },
+    {
+      "Category": "OWG Onboarding",
+      "Asset": "Member resources email",
+      "Owner": "Oren + Jayson",
+      "Status": "Not Started",
+      "Notes": "Resources and links."
+    },
+    {
+      "Category": "OWG Onboarding",
+      "Asset": "First-week success plan email",
+      "Owner": "Oren + Jayson",
+      "Status": "Not Started",
+      "Notes": "Set expectations."
+    }
+  ]
+}
