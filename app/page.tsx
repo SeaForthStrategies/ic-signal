@@ -1,5 +1,5 @@
-import LaunchCommandCenter from "@/components/LaunchCommandCenter";
+import AuthFrontPage from "@/components/AuthFrontPage";
 
 export default function Home() {
-  return <LaunchCommandCenter />;
+  return <AuthFrontPage mode="signin" />;
 }

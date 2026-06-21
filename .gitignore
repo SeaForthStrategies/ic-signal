@@ -1,9 +1,11 @@
 .next
 node_modules
+.pnpm-store
 out
 dist
 .vercel
 *.log
 .DS_Store
 *.tsbuildinfo
-.prisma/
+
+.env.local
