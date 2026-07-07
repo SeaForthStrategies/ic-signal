@@ -140,6 +140,22 @@ type AppState = {
   registrations: number;
 };
 
+type SessionProfile = {
+  email: string;
+  name?: string;
+  role?: "owner" | "admin" | "member" | "viewer";
+  userId?: string;
+  workspaceId?: string | null;
+  workspaceName?: string | null;
+};
+
+type TeamMember = {
+  email: string;
+  id: string;
+  name: string;
+  role: "owner" | "admin" | "member" | "viewer";
+};
+
 type LaunchMetricsData = {
   planDone: number;
   assetsDone: number;
@@ -302,27 +318,74 @@ function buildPlanWeeks(rows: PlanItem[]): PlanWeek[] {
 export default function LaunchCommandCenter({ view = "dashboard" }: { view?: View }) {
   const pathname = usePathname();
   const [appState, setAppState] = useState<AppState>(seedState);
-  const [localStateReady, setLocalStateReady] = useState(false);
+  const [stateReady, setStateReady] = useState(false);
+  const [saveStatus, setSaveStatus] = useState("Loading");
+  const [session, setSession] = useState<SessionProfile | null>(null);
   const [query, setQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<Status | "All">("All");
   const [ownerFilter, setOwnerFilter] = useState<string[]>([]);
   const [phaseFilter, setPhaseFilter] = useState("All");
 
   useEffect(() => {
-    window.setTimeout(() => {
-      const saved = window.localStorage.getItem(storageKey);
-      if (saved) {
-        setAppState(JSON.parse(saved) as AppState);
+    let active = true;
+
+    async function loadWorkspaceState() {
+      try {
+        const sessionResponse = await fetch("/api/auth/session");
+        if (sessionResponse.ok) {
+          const sessionBody = (await sessionResponse.json()) as { session?: SessionProfile | null };
+          if (active) setSession(sessionBody.session ?? null);
+        }
+
+        const response = await fetch("/api/progress");
+        if (response.ok) {
+          const body = (await response.json()) as { data?: AppState | null };
+          if (active && body.data) {
+            setAppState(body.data);
+            setSaveStatus("Saved");
+          }
+        } else {
+          const saved = window.localStorage.getItem(storageKey);
+          if (active && saved) {
+            setAppState(JSON.parse(saved) as AppState);
+            setSaveStatus("Local");
+          }
+        }
+      } catch {
+        const saved = window.localStorage.getItem(storageKey);
+        if (active && saved) {
+          setAppState(JSON.parse(saved) as AppState);
+          setSaveStatus("Local");
+        }
+      } finally {
+        if (active) setStateReady(true);
       }
-      setLocalStateReady(true);
-    }, 0);
+    }
+
+    void loadWorkspaceState();
+    return () => {
+      active = false;
+    };
   }, []);
 
   useEffect(() => {
-    if (localStateReady) {
-      window.localStorage.setItem(storageKey, JSON.stringify(appState));
-    }
-  }, [appState, localStateReady]);
+    if (!stateReady) return;
+    window.localStorage.setItem(storageKey, JSON.stringify(appState));
+    const timer = window.setTimeout(async () => {
+      try {
+        setSaveStatus("Saving");
+        const response = await fetch("/api/progress", {
+          body: JSON.stringify({ data: appState }),
+          headers: { "Content-Type": "application/json" },
+          method: "PUT",
+        });
+        setSaveStatus(response.ok ? "Saved" : "Local");
+      } catch {
+        setSaveStatus("Local");
+      }
+    }, 600);
+    return () => window.clearTimeout(timer);
+  }, [appState, stateReady]);
 
   const registrationGoal = Number(typedSeed.launchInputs.find((item) => item.label === "Registration Goal")?.value ?? 500);
   const webinarDate = String(typedSeed.launchInputs.find((item) => item.label === "Target Webinar Date")?.value ?? "");
@@ -539,8 +602,8 @@ export default function LaunchCommandCenter({ view = "dashboard" }: { view?: Vie
             </div>
           </div>
           <div className="topbar-signal">
-            <span>CRM Mode</span>
-            <strong>Launch Ready</strong>
+            <span>{saveStatus === "Saved" ? "Convex synced" : saveStatus === "Saving" ? "Saving" : "CRM Mode"}</span>
+            <strong>{session?.workspaceName ?? "Launch Ready"}</strong>
           </div>
           <div className="topbar-actions">
             <button className="icon-button" type="button" onClick={resetWorkspace} aria-label="Reset workspace">
@@ -629,6 +692,7 @@ export default function LaunchCommandCenter({ view = "dashboard" }: { view?: Vie
             launchInputs={typedSeed.launchInputs}
             resetWorkspace={resetWorkspace}
             registrationGoal={registrationGoal}
+            session={session}
             webinarDate={webinarDate}
           />
         )}
@@ -1033,60 +1097,260 @@ function SettingsPage({
   launchInputs,
   registrationGoal,
   resetWorkspace,
+  session,
   webinarDate,
 }: {
   launchInputs: Array<{ label: string; value: string | number; notes: string; owner: string }>;
   registrationGoal: number;
   resetWorkspace: () => void;
+  session: SessionProfile | null;
   webinarDate: string;
 }) {
+  const [profile, setProfile] = useState({
+    email: session?.email ?? "",
+    name: session?.name ?? "",
+    workspaceName: session?.workspaceName ?? "",
+  });
+  const [team, setTeam] = useState<TeamMember[]>([]);
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [invite, setInvite] = useState({
+    email: "",
+    name: "",
+    role: "member" as "admin" | "member" | "viewer",
+    temporaryPassword: "",
+  });
+  const [settingsMessage, setSettingsMessage] = useState("");
+  const [settingsError, setSettingsError] = useState("");
+
+  useEffect(() => {
+    let active = true;
+    async function loadSettings() {
+      const [accountResponse, teamResponse] = await Promise.all([fetch("/api/account"), fetch("/api/team")]);
+      if (accountResponse.ok) {
+        const body = (await accountResponse.json()) as {
+          profile?: { email: string; name: string; workspaceName: string | null };
+        };
+        if (active && body.profile) {
+          setProfile({
+            email: body.profile.email,
+            name: body.profile.name,
+            workspaceName: body.profile.workspaceName ?? "Finding Winners Launch CRM",
+          });
+        }
+      }
+      if (teamResponse.ok) {
+        const body = (await teamResponse.json()) as { members?: TeamMember[] };
+        if (active) setTeam(body.members ?? []);
+      }
+    }
+    void loadSettings();
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  async function saveProfile(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setSettingsError("");
+    setSettingsMessage("");
+    const response = await fetch("/api/account", {
+      body: JSON.stringify({ name: profile.name, workspaceName: profile.workspaceName }),
+      headers: { "Content-Type": "application/json" },
+      method: "PUT",
+    });
+    const body = (await response.json().catch(() => null)) as { message?: string; profile?: typeof profile } | null;
+    if (!response.ok) {
+      setSettingsError(body?.message ?? "Unable to save profile.");
+      return;
+    }
+    if (body?.profile) {
+      setProfile({
+        email: body.profile.email,
+        name: body.profile.name,
+        workspaceName: body.profile.workspaceName ?? "Finding Winners Launch CRM",
+      });
+    }
+    setSettingsMessage("Profile saved.");
+  }
+
+  async function savePassword(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setSettingsError("");
+    setSettingsMessage("");
+    const response = await fetch("/api/auth/change-password", {
+      body: JSON.stringify({ currentPassword, newPassword }),
+      headers: { "Content-Type": "application/json" },
+      method: "POST",
+    });
+    const body = (await response.json().catch(() => null)) as { message?: string } | null;
+    if (!response.ok) {
+      setSettingsError(body?.message ?? "Unable to update password.");
+      return;
+    }
+    setCurrentPassword("");
+    setNewPassword("");
+    setSettingsMessage("Password updated.");
+  }
+
+  async function inviteMember(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setSettingsError("");
+    setSettingsMessage("");
+    const response = await fetch("/api/team", {
+      body: JSON.stringify(invite),
+      headers: { "Content-Type": "application/json" },
+      method: "POST",
+    });
+    const body = (await response.json().catch(() => null)) as { members?: TeamMember[]; message?: string } | null;
+    if (!response.ok) {
+      setSettingsError(body?.message ?? "Unable to add team member.");
+      return;
+    }
+    setTeam(body?.members ?? []);
+    setInvite({ email: "", name: "", role: "member", temporaryPassword: "" });
+    setSettingsMessage("Team member added.");
+  }
+
   return (
     <section className="settings-grid">
       <article className="overview-card">
         <p className="eyebrow">Account</p>
         <h2>Profile settings</h2>
-        <p className="quiet-copy">Frontend placeholder for user profile, password, and notification preferences.</p>
-        <div className="account-form">
+        <p className="quiet-copy">Your profile and workspace name are stored in Convex.</p>
+        <form className="account-form" onSubmit={saveProfile}>
           <label>
             <span>Display name</span>
-            <input placeholder="Abby Lehr" type="text" />
+            <input
+              onChange={(event) => setProfile((current) => ({ ...current, name: event.target.value }))}
+              placeholder="Abby Lehr"
+              type="text"
+              value={profile.name}
+            />
           </label>
           <label>
             <span>Email</span>
-            <input placeholder="abby@intersectioncapital.com" type="email" />
+            <input disabled placeholder="abby@intersectioncapital.com" type="email" value={profile.email} />
           </label>
           <label>
-            <span>Role</span>
-            <select defaultValue="admin">
-              <option value="admin">Admin</option>
-              <option value="operator">Launch operator</option>
-              <option value="viewer">Viewer</option>
-            </select>
+            <span>Workspace</span>
+            <input
+              onChange={(event) => setProfile((current) => ({ ...current, workspaceName: event.target.value }))}
+              placeholder="Finding Winners Launch CRM"
+              type="text"
+              value={profile.workspaceName}
+            />
           </label>
-        </div>
+          <button className="clear-filters settings-action" type="submit">
+            Save profile
+          </button>
+        </form>
       </article>
       <article className="overview-card">
         <p className="eyebrow">Security</p>
         <h2>Password</h2>
-        <p className="quiet-copy">Password updates will be connected when backend auth is wired.</p>
-        <div className="account-form">
+        <p className="quiet-copy">Update your password using the current signed-in account.</p>
+        <form className="account-form" onSubmit={savePassword}>
           <label>
             <span>Current password</span>
-            <input placeholder="••••••••" type="password" />
+            <input
+              autoComplete="current-password"
+              onChange={(event) => setCurrentPassword(event.target.value)}
+              placeholder="Current password"
+              type="password"
+              value={currentPassword}
+            />
           </label>
           <label>
             <span>New password</span>
-            <input placeholder="••••••••" type="password" />
+            <input
+              autoComplete="new-password"
+              onChange={(event) => setNewPassword(event.target.value)}
+              placeholder="At least 8 characters"
+              type="password"
+              value={newPassword}
+            />
           </label>
+          <button className="clear-filters settings-action" type="submit">
+            Update password
+          </button>
+        </form>
+        {settingsError && <p className="auth-error settings-message">{settingsError}</p>}
+        {settingsMessage && <p className="auth-success settings-message">{settingsMessage}</p>}
+      </article>
+      <article className="overview-card">
+        <p className="eyebrow">Team</p>
+        <h2>User management</h2>
+        <p className="quiet-copy">Add teammates to this workspace with a temporary password.</p>
+        <form className="account-form" onSubmit={inviteMember}>
+          <label>
+            <span>Name</span>
+            <input
+              onChange={(event) => setInvite((current) => ({ ...current, name: event.target.value }))}
+              placeholder="Team member"
+              type="text"
+              value={invite.name}
+            />
+          </label>
+          <label>
+            <span>Email</span>
+            <input
+              onChange={(event) => setInvite((current) => ({ ...current, email: event.target.value }))}
+              placeholder="teammate@company.com"
+              required
+              type="email"
+              value={invite.email}
+            />
+          </label>
+          <label>
+            <span>Role</span>
+            <select
+              value={invite.role}
+              onChange={(event) => setInvite((current) => ({ ...current, role: event.target.value as "admin" | "member" | "viewer" }))}
+            >
+              <option value="admin">Admin</option>
+              <option value="member">Member</option>
+              <option value="viewer">Viewer</option>
+            </select>
+          </label>
+          <label>
+            <span>Temporary password</span>
+            <input
+              onChange={(event) => setInvite((current) => ({ ...current, temporaryPassword: event.target.value }))}
+              placeholder="At least 8 characters"
+              required
+              type="password"
+              value={invite.temporaryPassword}
+            />
+          </label>
+          <button className="clear-filters settings-action" type="submit">
+            Add team member
+          </button>
+        </form>
+      </article>
+      <article className="overview-card">
+        <p className="eyebrow">Workspace users</p>
+        <h2>Team roster</h2>
+        <div className="settings-list">
+          {team.map((member) => (
+            <div key={member.id}>
+              <strong>{member.name}</strong>
+              <span>{member.email}</span>
+              <small>{member.role}</small>
+            </div>
+          ))}
+          {team.length === 0 && (
+            <div>
+              <strong>No team members loaded</strong>
+              <span>Sign in and refresh settings to load the roster.</span>
+            </div>
+          )}
         </div>
-        <button className="clear-filters settings-action" type="button">
-          Save account settings
-        </button>
       </article>
       <article className="overview-card">
         <p className="eyebrow">Workspace</p>
         <h2>Launch configuration</h2>
-        <p className="quiet-copy">Core launch inputs imported from the original workbook. Persistent edits are stored locally in this browser for now.</p>
+        <p className="quiet-copy">Core launch inputs imported from the original workbook. Dashboard progress now syncs to Convex by workspace.</p>
         <div className="settings-list">
           {launchInputs.map((item) => (
             <div key={item.label}>
@@ -1102,7 +1366,7 @@ function SettingsPage({
         <h2>Data management</h2>
         <p className="quiet-copy">Registration goal: {registrationGoal.toLocaleString()}. Webinar date: {webinarDate ? formatDate(webinarDate.slice(0, 10)) : "TBD"}.</p>
         <button className="clear-filters settings-action" type="button" onClick={resetWorkspace}>
-          Reset local workspace
+          Reset workspace dashboard
         </button>
       </article>
     </section>

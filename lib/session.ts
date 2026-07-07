@@ -4,6 +4,11 @@ const sessionDurationMs = 1000 * 60 * 60 * 12;
 type SessionPayload = {
   email: string;
   exp: number;
+  name?: string;
+  role?: "owner" | "admin" | "member" | "viewer";
+  userId?: string;
+  workspaceId?: string | null;
+  workspaceName?: string | null;
 };
 
 function base64UrlEncode(input: string | ArrayBuffer) {
@@ -53,14 +58,44 @@ export function getSessionDurationSeconds() {
   return Math.floor(sessionDurationMs / 1000);
 }
 
-export async function createSessionToken(email: string) {
+export async function createSessionToken(session: Omit<SessionPayload, "exp"> | string) {
   const payload: SessionPayload = {
-    email,
+    ...(typeof session === "string" ? { email: session } : session),
     exp: Date.now() + sessionDurationMs,
   };
   const body = base64UrlEncode(JSON.stringify(payload));
   const signature = await hmac(body, getSessionSecret());
   return `${body}.${signature}`;
+}
+
+export function getSessionTokenFromRequest(request: Request) {
+  const cookie = request.headers
+    .get("cookie")
+    ?.split(";")
+    .map((part) => part.trim())
+    .find((part) => part.startsWith(`${getSessionCookieName()}=`));
+  return cookie?.split("=")[1] ?? null;
+}
+
+export async function getSessionFromRequest(request: Request) {
+  return await verifySessionToken(getSessionTokenFromRequest(request));
+}
+
+export async function hashPassword(password: string) {
+  const iterations = 310000;
+  const salt = crypto.getRandomValues(new Uint8Array(16));
+  const key = await crypto.subtle.importKey("raw", new TextEncoder().encode(password), "PBKDF2", false, ["deriveBits"]);
+  const derived = await crypto.subtle.deriveBits(
+    { hash: "SHA-256", iterations, name: "PBKDF2", salt },
+    key,
+    256,
+  );
+  return `pbkdf2_sha256$${iterations}$${base64UrlEncode(salt.buffer)}$${base64UrlEncode(derived)}`;
+}
+
+export async function hashResetToken(token: string) {
+  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(token));
+  return base64UrlEncode(digest);
 }
 
 export async function verifySessionToken(token?: string | null) {

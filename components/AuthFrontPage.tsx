@@ -8,18 +8,22 @@ export default function AuthFrontPage({ mode = "signin" }: { mode?: "signin" | "
   const router = useRouter();
   const [activeMode, setActiveMode] = useState(mode);
   const [email, setEmail] = useState("abby@intersectioncapital.com");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [workspaceName, setWorkspaceName] = useState("Finding Winners Launch CRM");
   const [error, setError] = useState("");
+  const [notice, setNotice] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const isSignup = activeMode === "signup";
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError("");
+    setNotice("");
     setSubmitting(true);
 
-    const response = await fetch("/api/auth/login", {
-      body: JSON.stringify({ email, password }),
+    const response = await fetch(isSignup ? "/api/auth/signup" : "/api/auth/login", {
+      body: JSON.stringify(isSignup ? { email, name, password, workspaceName } : { email, password }),
       headers: { "Content-Type": "application/json" },
       method: "POST",
     });
@@ -35,6 +39,24 @@ export default function AuthFrontPage({ mode = "signin" }: { mode?: "signin" | "
     const nextPath = new URLSearchParams(window.location.search).get("next") ?? "/dashboard";
     router.push(nextPath.startsWith("/") ? nextPath : "/dashboard");
     router.refresh();
+  }
+
+  async function requestReset() {
+    setError("");
+    setNotice("");
+    setSubmitting(true);
+    const response = await fetch("/api/auth/request-reset", {
+      body: JSON.stringify({ email }),
+      headers: { "Content-Type": "application/json" },
+      method: "POST",
+    });
+    const body = (await response.json().catch(() => null)) as { message?: string; resetUrl?: string } | null;
+    setSubmitting(false);
+    if (!response.ok) {
+      setError(body?.message ?? "Unable to start password reset.");
+      return;
+    }
+    setNotice(body?.resetUrl ? `Reset link: ${body.resetUrl}` : (body?.message ?? "Reset link prepared."));
   }
 
   return (
@@ -83,20 +105,42 @@ export default function AuthFrontPage({ mode = "signin" }: { mode?: "signin" | "
           <h2>{isSignup ? "Create your account" : "Sign in to Launch CRM"}</h2>
           <p className="quiet-copy">
             {isSignup
-              ? "Workspace access is currently managed by the admin account. Use the sign-in tab to enter the app."
-              : "Use your approved workspace account to access the launch command center."}
+              ? "Create a workspace, invite your team, and save the launch dashboard to Convex."
+              : "Use your workspace account to access the saved launch command center."}
           </p>
         </div>
 
         <form className="auth-form" onSubmit={handleSubmit}>
           {isSignup && (
-            <label>
-              <span>Name</span>
-              <div>
-                <User size={17} />
-                <input placeholder="Abby Lehr" type="text" />
-              </div>
-            </label>
+            <>
+              <label>
+                <span>Name</span>
+                <div>
+                  <User size={17} />
+                  <input
+                    autoComplete="name"
+                    onChange={(event) => setName(event.target.value)}
+                    placeholder="Abby Lehr"
+                    required
+                    type="text"
+                    value={name}
+                  />
+                </div>
+              </label>
+              <label>
+                <span>Workspace</span>
+                <div>
+                  <Rocket size={17} />
+                  <input
+                    onChange={(event) => setWorkspaceName(event.target.value)}
+                    placeholder="Finding Winners Launch CRM"
+                    required
+                    type="text"
+                    value={workspaceName}
+                  />
+                </div>
+              </label>
+            </>
           )}
           <label>
             <span>Email</span>
@@ -128,9 +172,10 @@ export default function AuthFrontPage({ mode = "signin" }: { mode?: "signin" | "
           </label>
 
           {error && <p className="auth-error">{error}</p>}
+          {notice && <p className="auth-success">{notice}</p>}
 
-          <button className="auth-submit" disabled={submitting || isSignup} type="submit">
-            {submitting ? "Signing in..." : isSignup ? "Account managed" : "Sign in"}
+          <button className="auth-submit" disabled={submitting} type="submit">
+            {submitting ? "Working..." : isSignup ? "Create account" : "Sign in"}
             <ArrowRight size={17} />
           </button>
         </form>
@@ -142,7 +187,11 @@ export default function AuthFrontPage({ mode = "signin" }: { mode?: "signin" | "
           </button>
         </div>
 
-        <p className="auth-preview-link">Protected workspace access is now enabled.</p>
+        {!isSignup && (
+          <button className="auth-preview-link" disabled={submitting} type="button" onClick={requestReset}>
+            Forgot password?
+          </button>
+        )}
       </section>
     </main>
   );

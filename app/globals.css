@@ -748,6 +748,28 @@ input[type="number"],
   padding: 10px 12px;
 }
 
+.auth-success {
+  background: rgba(6, 118, 71, 0.1);
+  border: 1px solid rgba(6, 118, 71, 0.24);
+  border-radius: 12px;
+  color: var(--success);
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.4;
+  margin: 0;
+  overflow-wrap: anywhere;
+  padding: 10px 12px;
+}
+
+.settings-message {
+  margin-top: 14px;
+}
+
+.single-auth {
+  grid-template-columns: minmax(340px, 520px);
+  justify-content: center;
+}
+
 .auth-card-footer {
   align-items: center;
   color: var(--muted);
