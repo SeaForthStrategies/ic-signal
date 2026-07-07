@@ -34,6 +34,18 @@ npm run convex:dev
 
 The current app still uses browser-local state for dashboard edits. Convex starter functions live in `convex/progress.ts` and are ready for the next persistence wiring pass.
 
+## Auth
+
+The app has a lightweight email/password gate using signed HTTP-only cookies. Local credentials live only in `.env.local`:
+
+```bash
+AUTH_EMAIL=
+AUTH_PASSWORD_HASH=
+AUTH_SECRET=
+```
+
+Do not commit `.env.local`. The checked-in auth routes are in `app/api/auth/`, and route protection is handled by `proxy.ts`.
+
 ## Codex Notes
 
 This repo includes `AGENTS.md`, Convex AI guidelines, and Convex agent skills so Codex-style agents have project context. Before changing Convex code, read `convex/_generated/ai/guidelines.md`.

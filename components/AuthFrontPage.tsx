@@ -1,12 +1,41 @@
 "use client";
 
 import { ArrowRight, CheckCircle2, Lock, Mail, Rocket, User } from "lucide-react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function AuthFrontPage({ mode = "signin" }: { mode?: "signin" | "signup" }) {
+  const router = useRouter();
   const [activeMode, setActiveMode] = useState(mode);
+  const [email, setEmail] = useState("abby@intersectioncapital.com");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
   const isSignup = activeMode === "signup";
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setError("");
+    setSubmitting(true);
+
+    const response = await fetch("/api/auth/login", {
+      body: JSON.stringify({ email, password }),
+      headers: { "Content-Type": "application/json" },
+      method: "POST",
+    });
+
+    setSubmitting(false);
+
+    if (!response.ok) {
+      const body = (await response.json().catch(() => null)) as { message?: string } | null;
+      setError(body?.message ?? "Unable to sign in.");
+      return;
+    }
+
+    const nextPath = new URLSearchParams(window.location.search).get("next") ?? "/dashboard";
+    router.push(nextPath.startsWith("/") ? nextPath : "/dashboard");
+    router.refresh();
+  }
 
   return (
     <main className="auth-shell">
@@ -52,10 +81,14 @@ export default function AuthFrontPage({ mode = "signin" }: { mode?: "signin" | "
         <div>
           <p className="eyebrow">{isSignup ? "Create workspace access" : "Welcome back"}</p>
           <h2>{isSignup ? "Create your account" : "Sign in to Launch CRM"}</h2>
-          <p className="quiet-copy">Frontend only for now. We will connect Convex authentication and persistence next.</p>
+          <p className="quiet-copy">
+            {isSignup
+              ? "Workspace access is currently managed by the admin account. Use the sign-in tab to enter the app."
+              : "Use your approved workspace account to access the launch command center."}
+          </p>
         </div>
 
-        <form className="auth-form">
+        <form className="auth-form" onSubmit={handleSubmit}>
           {isSignup && (
             <label>
               <span>Name</span>
@@ -69,19 +102,35 @@ export default function AuthFrontPage({ mode = "signin" }: { mode?: "signin" | "
             <span>Email</span>
             <div>
               <Mail size={17} />
-              <input placeholder="you@company.com" type="email" />
+              <input
+                autoComplete="email"
+                onChange={(event) => setEmail(event.target.value)}
+                placeholder="you@company.com"
+                required
+                type="email"
+                value={email}
+              />
             </div>
           </label>
           <label>
             <span>Password</span>
             <div>
               <Lock size={17} />
-              <input placeholder="••••••••" type="password" />
+              <input
+                autoComplete="current-password"
+                onChange={(event) => setPassword(event.target.value)}
+                placeholder="••••••••"
+                required
+                type="password"
+                value={password}
+              />
             </div>
           </label>
 
-          <button className="auth-submit" type="button">
-            {isSignup ? "Create account" : "Sign in"}
+          {error && <p className="auth-error">{error}</p>}
+
+          <button className="auth-submit" disabled={submitting || isSignup} type="submit">
+            {submitting ? "Signing in..." : isSignup ? "Account managed" : "Sign in"}
             <ArrowRight size={17} />
           </button>
         </form>
@@ -93,9 +142,7 @@ export default function AuthFrontPage({ mode = "signin" }: { mode?: "signin" | "
           </button>
         </div>
 
-        <Link className="auth-preview-link" href="/dashboard">
-          Continue to dashboard preview
-        </Link>
+        <p className="auth-preview-link">Protected workspace access is now enabled.</p>
       </section>
     </main>
   );

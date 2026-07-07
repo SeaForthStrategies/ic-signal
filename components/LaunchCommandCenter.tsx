@@ -11,6 +11,7 @@ import {
   Gauge,
   LayoutDashboard,
   ListChecks,
+  LogOut,
   MessageSquareText,
   Rocket,
   Search,
@@ -481,11 +482,16 @@ export default function LaunchCommandCenter({ view = "dashboard" }: { view?: Vie
     setPhaseFilter("All");
   }
 
-function resetFilters() {
+  function resetFilters() {
     setQuery("");
     setStatusFilter("All");
     setOwnerFilter([]);
     setPhaseFilter("All");
+  }
+
+  async function signOut() {
+    await fetch("/api/auth/logout", { method: "POST" });
+    window.location.href = "/login";
   }
 
   return (
@@ -539,6 +545,9 @@ function resetFilters() {
           <div className="topbar-actions">
             <button className="icon-button" type="button" onClick={resetWorkspace} aria-label="Reset workspace">
               <Settings2 size={18} />
+            </button>
+            <button className="icon-button" type="button" onClick={signOut} aria-label="Sign out">
+              <LogOut size={18} />
             </button>
           </div>
         </section>

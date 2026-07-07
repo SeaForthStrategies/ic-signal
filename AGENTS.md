@@ -35,6 +35,8 @@ Core product areas:
 - `data/launch-data.json` is the structured source of truth imported from the workbook.
 - `convex/progress.ts` and `convex/schema.ts` are the starter Convex persistence layer.
 - `app/ConvexClientProvider.tsx` wraps the app with Convex when `NEXT_PUBLIC_CONVEX_URL` exists.
+- `app/api/auth/` contains the lightweight email/password auth routes.
+- `proxy.ts` protects app pages with a signed HTTP-only session cookie.
 
 ## Data Rules
 
@@ -72,4 +74,5 @@ npm run convex:dev:once
 - Do not turn the product into a marketing landing page.
 - Avoid unrelated refactors. This app is intentionally centralized around `LaunchCommandCenter.tsx` until the backend/state model is more mature.
 - Frontend auth screens are placeholders; do not reintroduce Prisma or NextAuth unless the user explicitly asks.
+- Auth credentials belong in `.env.local` as `AUTH_EMAIL`, `AUTH_PASSWORD_HASH`, and `AUTH_SECRET`; never commit raw passwords or env files.
 - For Convex work, read `convex/_generated/ai/guidelines.md` before editing backend functions.
