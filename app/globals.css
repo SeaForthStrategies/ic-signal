@@ -1163,6 +1163,116 @@ td small {
   color: var(--muted);
 }
 
+.status-badge.deferred,
+.status-select.deferred {
+  background: rgba(102, 112, 133, 0.1);
+  border-color: rgba(102, 112, 133, 0.24);
+  color: #667085;
+}
+
+.intelligence-page {
+  display: grid;
+  gap: 18px;
+}
+
+.promise-band {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(255, 255, 255, 0.76));
+  border: 1px solid rgba(37, 99, 235, 0.22);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  display: grid;
+  gap: 12px;
+  padding: 22px;
+}
+
+.promise-band h3 {
+  font-size: 28px;
+  letter-spacing: 0;
+  line-height: 1.12;
+  margin: 0;
+  max-width: 900px;
+}
+
+.promise-band p {
+  color: #344054;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 920px;
+}
+
+.intelligence-grid {
+  align-items: start;
+}
+
+.wide-card {
+  grid-column: span 2;
+}
+
+.kpi-table,
+.kpi-section,
+.messaging-grid,
+.daily-metric-grid,
+.daily-metric-section {
+  display: grid;
+  gap: 12px;
+}
+
+.kpi-section h3,
+.daily-metric-section h3 {
+  color: var(--ink);
+  font-size: 15px;
+  margin: 4px 0 0;
+}
+
+.kpi-row,
+.daily-metric-row {
+  align-items: start;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid var(--line-strong);
+  border-radius: 14px;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: minmax(0, 1fr) 110px 90px;
+  padding: 13px;
+}
+
+.kpi-row div {
+  display: grid;
+  gap: 5px;
+}
+
+.kpi-row span,
+.daily-metric-row span {
+  color: #475467;
+  line-height: 1.4;
+}
+
+.kpi-row b,
+.daily-metric-row strong {
+  color: var(--accent);
+  font-size: 14px;
+}
+
+.kpi-row small,
+.compact-list small {
+  color: var(--muted);
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.messaging-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.daily-metric-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 16px;
+}
+
+.daily-metric-row {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
 .card-grid {
   display: grid;
   gap: 16px;
@@ -1297,8 +1407,14 @@ td small {
   }
 
   .dashboard-grid,
-  .settings-grid {
+  .settings-grid,
+  .messaging-grid,
+  .daily-metric-grid {
     grid-template-columns: 1fr;
+  }
+
+  .wide-card {
+    grid-column: span 1;
   }
 
   .filters {
@@ -1360,6 +1476,8 @@ td small {
   .metrics-grid,
   .card-grid,
   .card-grid.workflows,
+  .messaging-grid,
+  .daily-metric-grid,
   .tabs,
   .filters {
     grid-template-columns: 1fr;
@@ -1396,6 +1514,11 @@ td small {
   }
 
   .week-day-row {
+    grid-template-columns: 1fr;
+  }
+
+  .kpi-row,
+  .daily-metric-row {
     grid-template-columns: 1fr;
   }
 

@@ -8,8 +8,10 @@ import {
   CircleAlert,
   ClipboardCheck,
   Filter,
+  Gauge,
   LayoutDashboard,
   ListChecks,
+  MessageSquareText,
   Rocket,
   Search,
   Settings2,
@@ -21,9 +23,9 @@ import { usePathname } from "next/navigation";
 import { type Dispatch, type SetStateAction, useEffect, useMemo, useState } from "react";
 import seedData from "@/data/launch-data.json";
 
-type Status = "Not Started" | "In Progress" | "Done" | "Blocked";
+type Status = "Not Started" | "In Progress" | "Done" | "Blocked" | "Deferred";
 type Tab = "plan" | "assets" | "workflows" | "milestones";
-type View = "dashboard" | Tab | "settings";
+type View = "dashboard" | Tab | "intelligence" | "settings";
 
 type PlanItem = {
   Day: number;
@@ -65,6 +67,56 @@ type Milestone = {
   owner: string;
   status: Status;
   notes: string;
+};
+
+type KpiItem = {
+  section: string;
+  metric: string;
+  target: string;
+  actual: string | number | null;
+  status: string | null;
+  notes: string;
+  owner: string;
+};
+
+type MessagingItem = {
+  element: string;
+  guidance: string;
+  placement: string;
+  owner: string;
+};
+
+type MessagingSection = {
+  title: string;
+  items: MessagingItem[];
+};
+
+type MessagingGuide = {
+  title: string;
+  subtitle: string;
+  promiseTitle: string;
+  promise: string;
+  promiseNotes: string;
+  sections: MessagingSection[];
+};
+
+type DailyRegistrationMetric = {
+  section: string;
+  metric: string;
+  target: string | number | null;
+  values: Array<string | number | null>;
+};
+
+type DailyRegistrations = {
+  title: string;
+  subtitle: string;
+  days: string[];
+  metrics: DailyRegistrationMetric[];
+};
+
+type OperatingRule = {
+  number: string;
+  rule: string;
 };
 
 type PlanWeek = {
@@ -118,10 +170,15 @@ const typedSeed = seedData as {
   workflows: WorkflowItem[];
   milestones: Milestone[];
   launchInputs: Array<{ label: string; value: string | number; notes: string; owner: string }>;
+  kpis: KpiItem[];
+  messaging: MessagingGuide;
+  dailyRegistrations: DailyRegistrations;
+  operatingRules: OperatingRule[];
+  sourceWorkbook: { fileName: string; importedAt: string };
 };
 
-const statusOptions: Status[] = ["Not Started", "In Progress", "Done", "Blocked"];
-const storageKey = "finding-winners-launch-os";
+const statusOptions: Status[] = ["Not Started", "In Progress", "Done", "Blocked", "Deferred"];
+const storageKey = "finding-winners-launch-os-webinar-v2";
 const seedState: AppState = {
   plan: typedSeed.plan,
   assets: typedSeed.assets,
@@ -176,6 +233,7 @@ const navItems: Array<{
   { href: "/assets", label: "Assets", detail: "Creative inventory", icon: ClipboardCheck },
   { href: "/workflows", label: "Workflows", detail: "GHL system", icon: Workflow },
   { href: "/milestones", label: "Milestones", detail: "Launch gates", icon: ListChecks },
+  { href: "/intelligence", label: "Intelligence", detail: "KPIs + messaging", icon: Gauge },
   { href: "/settings", label: "Settings", detail: "Workspace setup", icon: Settings2 },
 ];
 
@@ -193,6 +251,14 @@ function formatDate(value: string) {
 
 function unique(values: string[]) {
   return Array.from(new Set(values)).filter(Boolean).sort();
+}
+
+function groupBy<T>(items: T[], keyFn: (item: T) => string) {
+  return items.reduce<Record<string, T[]>>((groups, item) => {
+    const key = keyFn(item) || "General";
+    groups[key] = [...(groups[key] ?? []), item];
+    return groups;
+  }, {});
 }
 
 function splitOwners(owner: string) {
@@ -234,22 +300,28 @@ function buildPlanWeeks(rows: PlanItem[]): PlanWeek[] {
 
 export default function LaunchCommandCenter({ view = "dashboard" }: { view?: View }) {
   const pathname = usePathname();
-  const [appState, setAppState] = useState<AppState>(() => {
-    if (typeof window === "undefined") {
-      return seedState;
-    }
-
-    const saved = window.localStorage.getItem(storageKey);
-    return saved ? (JSON.parse(saved) as AppState) : seedState;
-  });
+  const [appState, setAppState] = useState<AppState>(seedState);
+  const [localStateReady, setLocalStateReady] = useState(false);
   const [query, setQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<Status | "All">("All");
   const [ownerFilter, setOwnerFilter] = useState<string[]>([]);
   const [phaseFilter, setPhaseFilter] = useState("All");
 
   useEffect(() => {
-    window.localStorage.setItem(storageKey, JSON.stringify(appState));
-  }, [appState]);
+    window.setTimeout(() => {
+      const saved = window.localStorage.getItem(storageKey);
+      if (saved) {
+        setAppState(JSON.parse(saved) as AppState);
+      }
+      setLocalStateReady(true);
+    }, 0);
+  }, []);
+
+  useEffect(() => {
+    if (localStateReady) {
+      window.localStorage.setItem(storageKey, JSON.stringify(appState));
+    }
+  }, [appState, localStateReady]);
 
   const registrationGoal = Number(typedSeed.launchInputs.find((item) => item.label === "Registration Goal")?.value ?? 500);
   const webinarDate = String(typedSeed.launchInputs.find((item) => item.label === "Target Webinar Date")?.value ?? "");
@@ -364,6 +436,14 @@ export default function LaunchCommandCenter({ view = "dashboard" }: { view?: Vie
   const activeTabMeta = tabConfig.find((tab) => tab.id === activeTab) ?? tabConfig[0];
   const activeStats = tabStats[activeTab];
   const filtersActive = query !== "" || statusFilter !== "All" || ownerFilter.length > 0 || phaseFilter !== "All";
+  const pageTitle =
+    view === "dashboard"
+      ? "Launch Command Center"
+      : view === "settings"
+        ? "Workspace Settings"
+        : view === "intelligence"
+          ? "Launch Intelligence"
+          : activeTabMeta.label;
 
   function updatePlanStatus(day: number, status: Status) {
     setAppState((current) => ({
@@ -449,7 +529,7 @@ function resetFilters() {
           <div className="brand page-brand">
             <div>
               <p>Oren Klaff / Finding Winners</p>
-              <h1>{view === "dashboard" ? "Launch Command Center" : view === "settings" ? "Workspace Settings" : activeTabMeta.label}</h1>
+              <h1>{pageTitle}</h1>
             </div>
           </div>
           <div className="topbar-signal">
@@ -500,7 +580,7 @@ function resetFilters() {
           </>
         )}
 
-        {view !== "dashboard" && view !== "settings" && (
+        {view !== "dashboard" && view !== "settings" && view !== "intelligence" && (
           <section className="workspace page-workspace">
             <WorkspaceHeading activeTabMeta={activeTabMeta} activeStats={activeStats} />
             <Filters
@@ -524,6 +604,15 @@ function resetFilters() {
             {activeTab === "workflows" && <WorkflowGrid rows={filteredWorkflows} onStatusChange={updateWorkflowStatus} />}
             {activeTab === "milestones" && <MilestoneRail rows={filteredMilestones} onStatusChange={updateMilestoneStatus} />}
           </section>
+        )}
+
+        {view === "intelligence" && (
+          <IntelligencePage
+            dailyRegistrations={typedSeed.dailyRegistrations}
+            kpis={typedSeed.kpis}
+            messaging={typedSeed.messaging}
+            operatingRules={typedSeed.operatingRules}
+          />
         )}
 
         {view === "settings" && (
@@ -694,6 +783,129 @@ function DashboardGrid({
           </div>
         )}
       </article>
+    </section>
+  );
+}
+
+function IntelligencePage({
+  dailyRegistrations,
+  kpis,
+  messaging,
+  operatingRules,
+}: {
+  dailyRegistrations: DailyRegistrations;
+  kpis: KpiItem[];
+  messaging: MessagingGuide;
+  operatingRules: OperatingRule[];
+}) {
+  const groupedKpis = groupBy(kpis, (item) => item.section);
+  const metricGroups = groupBy(dailyRegistrations.metrics, (item) => item.section);
+
+  return (
+    <section className="intelligence-page">
+      <div className="workspace-heading">
+        <div>
+          <p className="eyebrow">Workbook intelligence</p>
+          <h2>KPIs, messaging, and daily launch tracking</h2>
+          <p>Imported from the updated webinar workbook so execution, performance targets, and positioning stay together.</p>
+        </div>
+        <div className="workspace-stats">
+          <strong>{kpis.length}</strong>
+          <span>KPI targets</span>
+          <span>{dailyRegistrations.metrics.length} daily metrics</span>
+        </div>
+      </div>
+
+      <section className="promise-band">
+        <div className="panel-heading">
+          <MessageSquareText size={18} />
+          <span>{messaging.promiseTitle}</span>
+        </div>
+        <h3>{messaging.promise.replace(/^"|"$/g, "")}</h3>
+        <p>{messaging.promiseNotes}</p>
+      </section>
+
+      <section className="dashboard-grid intelligence-grid">
+        <article className="overview-card wide-card">
+          <div className="panel-heading">
+            <Gauge size={18} />
+            <span>KPI Targets</span>
+          </div>
+          <div className="kpi-table">
+            {Object.entries(groupedKpis).map(([section, rows]) => (
+              <div className="kpi-section" key={section}>
+                <h3>{section}</h3>
+                {rows.map((item) => (
+                  <div className="kpi-row" key={`${section}-${item.metric}`}>
+                    <div>
+                      <strong>{item.metric}</strong>
+                      <span>{item.notes}</span>
+                    </div>
+                    <b>{item.target}</b>
+                    <small>{item.owner}</small>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </article>
+
+        <article className="overview-card">
+          <div className="panel-heading">
+            <ListChecks size={18} />
+            <span>Operating Rules</span>
+          </div>
+          <div className="compact-list">
+            {operatingRules.map((item) => (
+              <div key={item.number}>
+                <strong>Rule {item.number}</strong>
+                <span>{item.rule}</span>
+              </div>
+            ))}
+          </div>
+        </article>
+      </section>
+
+      <section className="messaging-grid">
+        {messaging.sections.map((section) => (
+          <article className="overview-card" key={section.title}>
+            <div className="panel-heading">
+              <MessageSquareText size={18} />
+              <span>{section.title}</span>
+            </div>
+            <div className="compact-list">
+              {section.items.map((item) => (
+                <div key={`${section.title}-${item.element}`}>
+                  <strong>{item.element}</strong>
+                  <span>{item.guidance}</span>
+                  <small>{item.placement} / {item.owner}</small>
+                </div>
+              ))}
+            </div>
+          </article>
+        ))}
+      </section>
+
+      <section className="overview-card wide-card">
+        <div className="panel-heading">
+          <BarChart3 size={18} />
+          <span>{dailyRegistrations.title}</span>
+        </div>
+        <p className="quiet-copy">{dailyRegistrations.subtitle}</p>
+        <div className="daily-metric-grid">
+          {Object.entries(metricGroups).map(([section, rows]) => (
+            <div className="daily-metric-section" key={section}>
+              <h3>{section}</h3>
+              {rows.map((item) => (
+                <div className="daily-metric-row" key={`${section}-${item.metric}`}>
+                  <span>{item.metric}</span>
+                  <strong>{item.target ?? "Track daily"}</strong>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </section>
     </section>
   );
 }

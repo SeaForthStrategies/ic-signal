@@ -35,6 +35,12 @@
       "value": "GoHighLevel",
       "notes": "Source of truth for leads, segmentation, workflows, and reporting",
       "owner": "Jayson + Abby"
+    },
+    {
+      "label": "Webinar Platform",
+      "value": "BigMarker",
+      "notes": "Join links, calendar, platform reminders, attendance data",
+      "owner": "Jayson"
     }
   ],
   "milestones": [
@@ -122,8 +128,8 @@
       "Primary Focus": "Confirm domain strategy",
       "Action Steps": "Confirm roles for intersectioncapital.com/finding-winners, orenworkinggroup.com, and Orenklaff.com.",
       "Deliverable": "Domain routing decision log",
-      "Status": "Not Started",
-      "Notes": "Do not make Orenklaff.com a blocker."
+      "Status": "Done",
+      "Notes": "Iintersectioncapital.com/findingwinners"
     },
     {
       "Day": 3,
@@ -133,7 +139,7 @@
       "Primary Focus": "Audit GHL workspace",
       "Action Steps": "Review email sending domain, users, calendars, pipelines, custom fields, forms, automations, and reporting access.",
       "Deliverable": "GHL audit notes",
-      "Status": "Not Started",
+      "Status": "Done",
       "Notes": null
     },
     {
@@ -144,7 +150,7 @@
       "Primary Focus": "Define CRM stages",
       "Action Steps": "Create draft stages from New Lead through Registered, Attended, Hand Raise, OWG Member, Investor Conversation, Qualified Investor.",
       "Deliverable": "Pipeline stage list",
-      "Status": "Not Started",
+      "Status": "Done",
       "Notes": null
     },
     {
@@ -155,7 +161,7 @@
       "Primary Focus": "Create fields and tags",
       "Action Steps": "UTM fields, attendance, hand raise, OWG interest, owners",
       "Deliverable": "Field and tag schema",
-      "Status": "Not Started",
+      "Status": "Done",
       "Notes": null
     },
     {
@@ -166,7 +172,7 @@
       "Primary Focus": "Build GHL registration form",
       "Action Steps": "Create form with first name, last name, email, phone, SMS consent, source tracking fields.",
       "Deliverable": "GHL registration form",
-      "Status": "Not Started",
+      "Status": "Done",
       "Notes": null
     },
     {
@@ -177,7 +183,7 @@
       "Primary Focus": "Landing page wireframe",
       "Action Steps": "Draft hero, what they learn, Oren bio, who it's for, details, form, credibility, FAQ, CTA.",
       "Deliverable": "LP wireframe",
-      "Status": "Not Started",
+      "Status": "Done",
       "Notes": null
     },
     {
@@ -188,7 +194,7 @@
       "Primary Focus": "Review foundation",
       "Action Steps": "Approve funnel, domain structure, CRM stages, fields, tags, and LP wireframe direction.",
       "Deliverable": "Approval checkpoint",
-      "Status": "Not Started",
+      "Status": "Done",
       "Notes": "Batch approval only."
     },
     {
@@ -199,7 +205,7 @@
       "Primary Focus": "Build first LP version",
       "Action Steps": "Build simple HTML/Vercel page ",
       "Deliverable": "LP v1 preview",
-      "Status": "Not Started",
+      "Status": "In Progress",
       "Notes": null
     },
     {
@@ -210,7 +216,7 @@
       "Primary Focus": "Create confirmation page",
       "Action Steps": "Build You're In page with webinar time, next steps, calendar prompt, social share prompt.",
       "Deliverable": "Confirmation page",
-      "Status": "Not Started",
+      "Status": "Done",
       "Notes": null
     },
     {
@@ -221,7 +227,7 @@
       "Primary Focus": "Connect form to CRM",
       "Action Steps": "Connect form submit to contact creation, tags, pipeline stage, and UTM/source capture.",
       "Deliverable": "GHL contact routing live",
-      "Status": "Not Started",
+      "Status": "Done",
       "Notes": null
     },
     {
@@ -232,7 +238,7 @@
       "Primary Focus": "Set up BigMarker webinar",
       "Action Steps": "Create webinar title, date/time, presenter info, join settings, reminders, calendar functionality.",
       "Deliverable": "BigMarker event created",
-      "Status": "Not Started",
+      "Status": "Done",
       "Notes": null
     },
     {
@@ -243,7 +249,7 @@
       "Primary Focus": "Choose registration path",
       "Action Steps": "Select one primary path: GHL form to BigMarker or BigMarker embed to GHL. Test sync.",
       "Deliverable": "Registration integration decision",
-      "Status": "Not Started",
+      "Status": "Done",
       "Notes": "Avoid parallel registration paths."
     },
     {
@@ -254,7 +260,7 @@
       "Primary Focus": "Test end-to-end registration",
       "Action Steps": "Test LP > registration > GHL contact > BigMarker registration > confirmation page > tags/source fields.",
       "Deliverable": "Registration QA passed",
-      "Status": "Not Started",
+      "Status": "Done",
       "Notes": "No paid traffic before this works."
     },
     {
@@ -276,7 +282,7 @@
       "Primary Focus": "Build GHL email templates",
       "Action Steps": "Create reusable template with header, footer, CTA button, compliance footer, merge fields.",
       "Deliverable": "GHL email template",
-      "Status": "Not Started",
+      "Status": "Done",
       "Notes": null
     },
     {
@@ -287,7 +293,7 @@
       "Primary Focus": "Registration confirmation email",
       "Action Steps": "Oren drafts; Jayson loads. Confirm expectations and BigMarker join details.",
       "Deliverable": "You're In email live",
-      "Status": "Not Started",
+      "Status": "Done",
       "Notes": null
     },
     {
@@ -298,7 +304,7 @@
       "Primary Focus": "Write nurture emails 1-2",
       "Action Steps": "Draft credibility email and what-attendees-will-learn email.",
       "Deliverable": "Nurture #1-2 copy",
-      "Status": "Not Started",
+      "Status": "In Progress",
       "Notes": null
     },
     {
@@ -309,7 +315,7 @@
       "Primary Focus": "Write nurture emails 3-4",
       "Action Steps": "Draft key insight teaser and final attendance push.",
       "Deliverable": "Nurture #3-4 copy",
-      "Status": "Not Started",
+      "Status": "In Progress",
       "Notes": null
     },
     {
@@ -331,8 +337,8 @@
       "Primary Focus": "Define OWG offer",
       "Action Steps": "Document price, ideal member, benefits, meeting cadence, portal access, investment access, and application flow.",
       "Deliverable": "OWG offer brief",
-      "Status": "Not Started",
-      "Notes": null
+      "Status": "Deferred",
+      "Notes": "GORAN"
     },
     {
       "Day": 23,
@@ -342,8 +348,8 @@
       "Primary Focus": "Build OWG application page",
       "Action Steps": "Create simple application/interest page; prioritize CTA and form over portal polish.",
       "Deliverable": "OWG application page",
-      "Status": "Not Started",
-      "Notes": null
+      "Status": "Deferred",
+      "Notes": "GORAN"
     },
     {
       "Day": 24,
@@ -353,8 +359,8 @@
       "Primary Focus": "Create OWG pipeline",
       "Action Steps": "Set stages: Interested, Application Started, Submitted, Call Needed, Approved, Paid, Onboarded.",
       "Deliverable": "OWG pipeline in GHL",
-      "Status": "Not Started",
-      "Notes": null
+      "Status": "Deferred",
+      "Notes": "GORAN"
     },
     {
       "Day": 25,
@@ -364,7 +370,7 @@
       "Primary Focus": "Create hand-raise workflow",
       "Action Steps": "Tag high-intent contacts, move stage, notify team, create task, send immediate follow-up.",
       "Deliverable": "Hand raise workflow",
-      "Status": "Not Started",
+      "Status": "In Progress",
       "Notes": null
     },
     {
@@ -397,7 +403,7 @@
       "Primary Focus": "Map OWG onboarding emails",
       "Action Steps": "Outline welcome, community access, weekly meeting details, resources, first-week success plan.",
       "Deliverable": "OWG onboarding map",
-      "Status": "Not Started",
+      "Status": "Deferred",
       "Notes": null
     },
     {
@@ -875,14 +881,14 @@
   "assets": [
     {
       "Category": "Pages & Forms",
-      "Asset": "Finding Winners landing page at intersectioncapital.com/finding-winners",
+      "Asset": "Finding Winners landing page at Orenklaff.com/finding-winners",
       "Owner": "Abby",
       "Status": "Not Started",
       "Notes": "Build HTML/Vercel; form above fold."
     },
     {
       "Category": "Pages & Forms",
-      "Asset": "Confirmation page /finding-winners-youre-in",
+      "Asset": "Confirmation page /findingwinnersyourein",
       "Owner": "Abby",
       "Status": "Not Started",
       "Notes": "Includes next steps and calendar prompt."
@@ -900,13 +906,6 @@
       "Owner": "Abby",
       "Status": "Not Started",
       "Notes": "Minimum viable application, not full portal."
-    },
-    {
-      "Category": "Pages & Forms",
-      "Asset": "Replay page placeholder",
-      "Owner": "Abby",
-      "Status": "Not Started",
-      "Notes": "Can go live after webinar."
     },
     {
       "Category": "GHL / CRM",
@@ -1300,5 +1299,609 @@
       "Status": "Not Started",
       "Notes": "Set expectations."
     }
-  ]
+  ],
+  "kpis": [
+    {
+      "section": "A | FUNNEL CONVERSION RATES — Stage-by-Stage Benchmarks",
+      "metric": "Landing Page Conversion Rate",
+      "target": ">25%",
+      "actual": null,
+      "status": null,
+      "notes": "LP visitors ÷ registrations. Benchmark for cold traffic.",
+      "owner": "Abby"
+    },
+    {
+      "section": "A | FUNNEL CONVERSION RATES — Stage-by-Stage Benchmarks",
+      "metric": "Registration → Attendance Rate",
+      "target": ">35%",
+      "actual": null,
+      "status": null,
+      "notes": "Attendees ÷ registrants. BigMarker data post-webinar.",
+      "owner": "Jayson"
+    },
+    {
+      "section": "A | FUNNEL CONVERSION RATES — Stage-by-Stage Benchmarks",
+      "metric": "Attendance → Hand Raise Rate",
+      "target": ">20%",
+      "actual": null,
+      "status": null,
+      "notes": "Hand raises ÷ total live attendees.",
+      "owner": "Jayson"
+    },
+    {
+      "section": "A | FUNNEL CONVERSION RATES — Stage-by-Stage Benchmarks",
+      "metric": "Hand Raise → Investor Meeting",
+      "target": ">50%",
+      "actual": null,
+      "status": null,
+      "notes": "Booked calls ÷ hand raises. Speed-to-book matters.",
+      "owner": "Oren / Jayson"
+    },
+    {
+      "section": "A | FUNNEL CONVERSION RATES — Stage-by-Stage Benchmarks",
+      "metric": "Investor Meeting → Investment",
+      "target": ">20%",
+      "actual": null,
+      "status": null,
+      "notes": "Investments closed ÷ investor meetings held.",
+      "owner": "Oren"
+    },
+    {
+      "section": "A | FUNNEL CONVERSION RATES — Stage-by-Stage Benchmarks",
+      "metric": "No-Show Replay Engagement Rate",
+      "target": ">15%",
+      "actual": null,
+      "status": null,
+      "notes": "No-shows who watch replay ÷ total no-shows.",
+      "owner": "Jayson"
+    },
+    {
+      "section": "A | FUNNEL CONVERSION RATES — Stage-by-Stage Benchmarks",
+      "metric": "Cost per Registration (CPR)",
+      "target": "<$100",
+      "actual": null,
+      "status": null,
+      "notes": "Total ad spend ÷ total registrations.",
+      "owner": "Abby"
+    },
+    {
+      "section": "A | FUNNEL CONVERSION RATES — Stage-by-Stage Benchmarks",
+      "metric": "Cost per Attendee (CPA)",
+      "target": "<$300",
+      "actual": null,
+      "status": null,
+      "notes": "Total ad spend ÷ live attendees.",
+      "owner": "Abby"
+    },
+    {
+      "section": "A | FUNNEL CONVERSION RATES — Stage-by-Stage Benchmarks",
+      "metric": "Cost per Investor Meeting (CPIM)",
+      "target": "<$1,500",
+      "actual": null,
+      "status": null,
+      "notes": "Total ad spend ÷ investor meetings booked.",
+      "owner": "Abby"
+    },
+    {
+      "section": "A | FUNNEL CONVERSION RATES — Stage-by-Stage Benchmarks",
+      "metric": "Average Investment Size",
+      "target": "Define Target",
+      "actual": null,
+      "status": null,
+      "notes": "Total $ raised ÷ number of investors. Set target with Oren.",
+      "owner": "Oren"
+    },
+    {
+      "section": "A | FUNNEL CONVERSION RATES — Stage-by-Stage Benchmarks",
+      "metric": "Customer Acquisition Cost (CAC)",
+      "target": "Define Target",
+      "actual": null,
+      "status": null,
+      "notes": "All-in cost to acquire one investor (ads + ops + time).",
+      "owner": "Oren / Abby"
+    },
+    {
+      "section": "A | FUNNEL CONVERSION RATES — Stage-by-Stage Benchmarks",
+      "metric": "CAC Payback Period",
+      "target": "Define Target",
+      "actual": null,
+      "status": null,
+      "notes": "Months until investor revenue covers acquisition cost.",
+      "owner": "Oren"
+    }
+  ],
+  "messaging": {
+    "title": "Finding Winners — Messaging & Positioning Guide",
+    "subtitle": "Every ad, landing page, and email must answer the five questions below. Use the 'One Promise' as your headline anchor.",
+    "promiseTitle": "⭐ THE ONE PROMISE (Use as headline on LP and in every ad)",
+    "promise": "\"Learn how accredited investors access private opportunities that are typically unavailable to individual investors.\"",
+    "promiseNotes": "Everything else — headlines, bullets, testimonials, ad copy — exists only to support and prove this promise. Do not lead with Oren's bio or the group name.",
+    "sections": [
+      {
+        "title": "❓ Q1 — WHAT EXACTLY IS FINDING WINNERS?",
+        "items": [
+          {
+            "element": "One-sentence definition",
+            "guidance": "Finding Winners is a free live webinar where Oren Klaff reveals the framework he and his network use to identify high-upside private investment opportunities before they're available to the general public.",
+            "placement": "Use this verbatim on the LP above the fold",
+            "owner": "Abby / Oren"
+          },
+          {
+            "element": "What it is NOT",
+            "guidance": "It is NOT a pitch for a fund, NOT a general investing seminar, and NOT a teaser for a course. Every asset should make this clear.",
+            "placement": "Address objections proactively",
+            "owner": "Oren"
+          }
+        ]
+      },
+      {
+        "title": "❓ Q2 — WHO IS IT FOR?",
+        "items": [
+          {
+            "element": "Primary audience",
+            "guidance": "Accredited investors ($1M+ net worth or $200K+ income) who are actively looking for private deal flow and are frustrated that the best opportunities go to insiders.",
+            "placement": "Use in ad targeting AND in LP copy",
+            "owner": "Abby"
+          },
+          {
+            "element": "Secondary audience",
+            "guidance": "High-earning professionals and entrepreneurs who are accredited but have not yet invested privately — they need education AND access.",
+            "placement": "Different ad angle: education-first",
+            "owner": "Abby"
+          },
+          {
+            "element": "Who it is NOT for",
+            "guidance": "Retail investors, people looking for stock picks, or anyone seeking a passive 'set and forget' product. Qualify early to protect attendance quality.",
+            "placement": "Add qualifier line on LP",
+            "owner": "Oren / Abby"
+          }
+        ]
+      },
+      {
+        "title": "❓ Q3 — WHAT WILL ATTENDEES LEARN?",
+        "items": [
+          {
+            "element": "Learning outcome 1",
+            "guidance": "The criteria Oren and his network use to evaluate whether a private deal is worth pursuing — before doing any deep due diligence.",
+            "placement": "LP bullet point #1",
+            "owner": "Oren"
+          },
+          {
+            "element": "Learning outcome 2",
+            "guidance": "How to get access to deal flow that never appears on platforms like AngelList or Fundrise — the network-based sourcing model.",
+            "placement": "LP bullet point #2",
+            "owner": "Oren"
+          },
+          {
+            "element": "Learning outcome 3",
+            "guidance": "What separates investors who see outsized returns from those who get average outcomes — it's not capital size, it's information timing.",
+            "placement": "LP bullet point #3",
+            "owner": "Oren"
+          },
+          {
+            "element": "Learning outcome 4",
+            "guidance": "The specific next step after the webinar — how the Oren Working Group (OWG) provides ongoing deal access and investor community.",
+            "placement": "LP bullet point #4 / transition to CTA",
+            "owner": "Oren"
+          }
+        ]
+      },
+      {
+        "title": "❓ Q4 — WHAT IS THE NEXT STEP AFTER THE WEBINAR?",
+        "items": [
+          {
+            "element": "Primary CTA (live attendees)",
+            "guidance": "Apply to join the Oren Working Group — a curated investor community that provides ongoing private deal flow, Oren's direct evaluation, and group diligence.",
+            "placement": "Must be stated clearly during webinar AND on slide",
+            "owner": "Oren"
+          },
+          {
+            "element": "Secondary CTA (no-shows / replay)",
+            "guidance": "Watch the replay and apply within 48 hours. Create urgency without false scarcity.",
+            "placement": "No-show email sequence CTA",
+            "owner": "Jayson"
+          },
+          {
+            "element": "What happens after applying",
+            "guidance": "Screened call with Oren or team → approval → access to OWG deal flow and community.",
+            "placement": "Reduces friction by setting expectations",
+            "owner": "Oren / Jayson"
+          }
+        ]
+      },
+      {
+        "title": "❓ Q5 — WHY SHOULD THEY BELIEVE YOU? (Credibility layer)",
+        "items": [
+          {
+            "element": "Oren's proof point",
+            "guidance": "Oren Klaff has raised over $400M in private capital and is the author of Pitch Anything and Flip the Script — the standard texts used by deal professionals and investors.",
+            "placement": "LP bio section — keep it short",
+            "owner": "Oren / Abby"
+          },
+          {
+            "element": "Social proof",
+            "guidance": "Include 1–2 short testimonials from past webinar attendees or OWG members who found specific deals. Real names or 'Accredited investor, [city]' if anonymous.",
+            "placement": "LP testimonial section",
+            "owner": "Oren"
+          },
+          {
+            "element": "Specificity rule",
+            "guidance": "Every claim needs a number or a name. 'Investors like you have used this to...' is weak. '$3.2M deployed by OWG members in 2024' is strong.",
+            "placement": "Review all LP copy for vague claims",
+            "owner": "Oren / Abby"
+          }
+        ]
+      }
+    ]
+  },
+  "dailyRegistrations": {
+    "title": "Finding Winners — Daily Launch Dashboard",
+    "subtitle": "Enter the date in row 4 for each day column, then fill in daily numbers. Blue = input. Formulas auto-calculate CPR, CVR & running totals.",
+    "days": [
+      "Day 1",
+      "Day 2",
+      "Day 3",
+      "Day 4",
+      "Day 5",
+      "Day 6",
+      "Day 7",
+      "Day 8",
+      "Day 9",
+      "Day 10",
+      "Day 11",
+      "Day 12",
+      "Day 13",
+      "Day 14",
+      "Day 15",
+      "Day 16",
+      "Day 17",
+      "Day 18",
+      "Day 19",
+      "Day 20",
+      "Day 21",
+      "Day 22",
+      "Day 23",
+      "Day 24",
+      "Day 25",
+      "Day 26",
+      "Day 27",
+      "Day 28",
+      "Day 29",
+      "Day 30"
+    ],
+    "metrics": [
+      {
+        "section": "Other / Partner",
+        "metric": "✅ Total New Registrations Today",
+        "target": null,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "section": "Other / Partner",
+        "metric": "📊 Cumulative Registrations",
+        "target": "→ 500",
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "section": "Other / Partner",
+        "metric": "% of 500-Reg Goal",
+        "target": ">100%",
+        "values": []
+      },
+      {
+        "section": "Retargeting",
+        "metric": "💸 Total Spend Today",
+        "target": null,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "section": "Retargeting",
+        "metric": "📊 Cumulative Ad Spend",
+        "target": null,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "section": "📉 COST PER REGISTRATION (auto-calculated from spend ÷ regs)",
+        "metric": "CPR — Meta",
+        "target": "<$100",
+        "values": []
+      },
+      {
+        "section": "📉 COST PER REGISTRATION (auto-calculated from spend ÷ regs)",
+        "metric": "CPR — YouTube",
+        "target": "<$100",
+        "values": []
+      },
+      {
+        "section": "📉 COST PER REGISTRATION (auto-calculated from spend ÷ regs)",
+        "metric": "CPR — LinkedIn",
+        "target": "<$100",
+        "values": []
+      },
+      {
+        "section": "📉 COST PER REGISTRATION (auto-calculated from spend ÷ regs)",
+        "metric": "CPR — Blended (All)",
+        "target": "<$100",
+        "values": []
+      },
+      {
+        "section": "📊 ATTENDANCE & PIPELINE FORECAST (auto from cumulative regs)",
+        "metric": "Forecasted Attendees (35%)",
+        "target": "~175",
+        "values": []
+      },
+      {
+        "section": "📊 ATTENDANCE & PIPELINE FORECAST (auto from cumulative regs)",
+        "metric": "Forecasted Hand Raises (20% of attendees)",
+        "target": "~35",
+        "values": []
+      },
+      {
+        "section": "📊 ATTENDANCE & PIPELINE FORECAST (auto from cumulative regs)",
+        "metric": "Forecasted Investor Meetings (50% of HR)",
+        "target": "~18",
+        "values": []
+      },
+      {
+        "section": "Investor Meetings Held Today",
+        "metric": "📊 Cumulative Hand Raises",
+        "target": null,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "section": "Investors Closed Today",
+        "metric": "Avg Investment Size (today)",
+        "target": "Define",
+        "values": []
+      },
+      {
+        "section": "Investors Closed Today",
+        "metric": "📊 Cumulative Dollars Raised",
+        "target": null,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "section": "🔀 LP CONVERSION RATE BY SOURCE (enter % from GA4 daily)",
+        "metric": "LP CVR — Meta",
+        "target": ">25%",
+        "values": []
+      },
+      {
+        "section": "🔀 LP CONVERSION RATE BY SOURCE (enter % from GA4 daily)",
+        "metric": "LP CVR — YouTube",
+        "target": ">25%",
+        "values": []
+      },
+      {
+        "section": "🔀 LP CONVERSION RATE BY SOURCE (enter % from GA4 daily)",
+        "metric": "LP CVR — LinkedIn",
+        "target": ">25%",
+        "values": []
+      },
+      {
+        "section": "🔀 LP CONVERSION RATE BY SOURCE (enter % from GA4 daily)",
+        "metric": "LP CVR — Email",
+        "target": ">25%",
+        "values": []
+      },
+      {
+        "section": "🔀 LP CONVERSION RATE BY SOURCE (enter % from GA4 daily)",
+        "metric": "LP CVR — Organic / Direct",
+        "target": ">25%",
+        "values": []
+      }
+    ]
+  },
+  "operatingRules": [
+    {
+      "number": "1",
+      "rule": "GHL and landing page development come first; the funnel cannot be scaled until form, CRM, and email routing work."
+    },
+    {
+      "number": "2",
+      "rule": "BigMarker should handle join links, calendar links, and platform reminders; GHL should manage segmentation, nurture, and sales follow-up."
+    },
+    {
+      "number": "3",
+      "rule": "Do not make Orenklaff.com or a perfect OWG portal a launch blocker. Build the minimum viable exoskeleton first."
+    },
+    {
+      "number": "4",
+      "rule": "Before meaningful registration volume, daily monitoring is more useful than deep reporting meetings."
+    },
+    {
+      "number": "5",
+      "rule": "If behind pace after Day 56: send another warm-list email, increase partner/social pushes, and only scale paid ads that are converting."
+    }
+  ],
+  "sourceWorkbook": {
+    "fileName": "60_Day_Webinar Plan.xlsm",
+    "importedAt": "2026-07-06"
+  }
 }
