@@ -1,7 +1,7 @@
 "use client";
 
-import { ConvexProvider, ConvexReactClient } from "convex/react";
-import { type ReactNode, useMemo } from "react";
+import { ConvexProviderWithAuth, ConvexReactClient } from "convex/react";
+import { type ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 
 export function ConvexClientProvider({ children }: { children: ReactNode }) {
   const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL;
@@ -11,5 +11,42 @@ export function ConvexClientProvider({ children }: { children: ReactNode }) {
     return children;
   }
 
-  return <ConvexProvider client={convex}>{children}</ConvexProvider>;
+  return (
+    <ConvexProviderWithAuth client={convex} useAuth={useConvexJwtAuth}>
+      {children}
+    </ConvexProviderWithAuth>
+  );
+}
+
+function useConvexJwtAuth() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    async function loadSession() {
+      try {
+        const response = await fetch("/api/auth/session");
+        const body = (await response.json().catch(() => null)) as { authenticated?: boolean } | null;
+        if (active) setIsAuthenticated(Boolean(response.ok && body?.authenticated));
+      } catch {
+        if (active) setIsAuthenticated(false);
+      } finally {
+        if (active) setIsLoading(false);
+      }
+    }
+    void loadSession();
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const fetchAccessToken = useCallback(async () => {
+    const response = await fetch("/api/auth/token");
+    if (!response.ok) return null;
+    const body = (await response.json()) as { token?: string };
+    return body.token ?? null;
+  }, []);
+
+  return { fetchAccessToken, isAuthenticated, isLoading };
 }

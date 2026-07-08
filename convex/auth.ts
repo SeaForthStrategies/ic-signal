@@ -46,6 +46,34 @@ export const getUserByEmail = query({
   },
 });
 
+export const viewer = query({
+  args: {},
+  handler: async (ctx) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) return null;
+
+    const email = identity.email?.trim().toLowerCase();
+    if (!email) return null;
+
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_email", (q) => q.eq("email", email))
+      .unique();
+
+    if (!user) return null;
+    const workspace = await getPrimaryWorkspace(ctx, user._id);
+    return {
+      email: user.email,
+      id: user._id,
+      name: user.name,
+      role: user.role,
+      tokenIdentifier: identity.tokenIdentifier,
+      workspaceId: workspace?._id ?? null,
+      workspaceName: workspace?.name ?? null,
+    };
+  },
+});
+
 export const createAccount = mutation({
   args: {
     ...serverArgs,
