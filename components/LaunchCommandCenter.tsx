@@ -46,6 +46,9 @@ type AssetItem = {
   Owner: string;
   Status: Status;
   Notes: string | null;
+  "Content Needed"?: string;
+  "Upload Link"?: string;
+  "Content Draft"?: string;
 };
 
 type WorkflowItem = {
@@ -523,6 +526,13 @@ export default function LaunchCommandCenter({ view = "dashboard" }: { view?: Vie
     }));
   }
 
+  function updateAssetField(asset: string, field: "Content Needed" | "Upload Link" | "Content Draft", value: string) {
+    setAppState((current) => ({
+      ...current,
+      assets: current.assets.map((item) => (item.Asset === asset ? { ...item, [field]: value } : item)),
+    }));
+  }
+
   function updateWorkflowStatus(id: number, status: Status) {
     setAppState((current) => ({
       ...current,
@@ -622,8 +632,8 @@ export default function LaunchCommandCenter({ view = "dashboard" }: { view?: Vie
                 <p className="eyebrow">60-day marketing launch CRM</p>
                 <h2>Organized execution for a high-stakes launch.</h2>
                 <p>
-                  A polished operating plane for the Finding Winners launch: weekly execution, creative assets, GHL
-                  automation, milestone gates, and registration momentum in one clean command center.
+                  A polished operating plane for the July 30 Finding Winners deadline: weekly execution, creative assets,
+                  content uploads, GHL automation, milestone gates, and registration momentum in one clean command center.
                 </p>
                 <div className="hero-actions" aria-label="Launch posture">
                   <span>Pipeline clarity</span>
@@ -672,7 +682,9 @@ export default function LaunchCommandCenter({ view = "dashboard" }: { view?: Vie
             />
 
             {activeTab === "plan" && <PlanWeekList rows={filteredPlan} onStatusChange={updatePlanStatus} />}
-            {activeTab === "assets" && <AssetGrid rows={filteredAssets} onStatusChange={updateAssetStatus} />}
+            {activeTab === "assets" && (
+              <AssetGrid rows={filteredAssets} onAssetFieldChange={updateAssetField} onStatusChange={updateAssetStatus} />
+            )}
             {activeTab === "workflows" && <WorkflowGrid rows={filteredWorkflows} onStatusChange={updateWorkflowStatus} />}
             {activeTab === "milestones" && <MilestoneRail rows={filteredMilestones} onStatusChange={updateMilestoneStatus} />}
           </section>
@@ -1475,7 +1487,15 @@ function PlanWeekList({ rows, onStatusChange }: { rows: PlanItem[]; onStatusChan
   );
 }
 
-function AssetGrid({ rows, onStatusChange }: { rows: AssetItem[]; onStatusChange: (asset: string, status: Status) => void }) {
+function AssetGrid({
+  rows,
+  onAssetFieldChange,
+  onStatusChange,
+}: {
+  rows: AssetItem[];
+  onAssetFieldChange: (asset: string, field: "Content Needed" | "Upload Link" | "Content Draft", value: string) => void;
+  onStatusChange: (asset: string, status: Status) => void;
+}) {
   if (rows.length === 0) {
     return <EmptyState title="No assets found" detail="Try clearing filters or searching for another asset category." />;
   }
@@ -1483,15 +1503,50 @@ function AssetGrid({ rows, onStatusChange }: { rows: AssetItem[]; onStatusChange
   return (
     <div className="card-grid">
       {rows.map((item) => (
-        <article className="item-card" key={item.Asset}>
+        <article className="item-card asset-card" key={item.Asset}>
           <div className="item-card-top">
             <span>{item.Category}</span>
             <StatusSelect value={item.Status} onChange={(status) => onStatusChange(item.Asset, status)} />
           </div>
           <h3>{item.Asset}</h3>
           <p>{item.Notes}</p>
+          <div className="asset-content-fields">
+            <label>
+              <span>Content needed</span>
+              <textarea
+                aria-label={`Content needed for ${item.Asset}`}
+                onChange={(event) => onAssetFieldChange(item.Asset, "Content Needed", event.target.value)}
+                placeholder="Brief, copy, creative requirements, approval checklist..."
+                value={item["Content Needed"] ?? ""}
+              />
+            </label>
+            <label>
+              <span>Upload / file link</span>
+              <input
+                aria-label={`Upload or file link for ${item.Asset}`}
+                onChange={(event) => onAssetFieldChange(item.Asset, "Upload Link", event.target.value)}
+                placeholder="Drive, Canva, Figma, Vercel, GHL, BigMarker, or asset URL"
+                type="url"
+                value={item["Upload Link"] ?? ""}
+              />
+            </label>
+            <label>
+              <span>Draft / final content</span>
+              <textarea
+                aria-label={`Draft or final content for ${item.Asset}`}
+                onChange={(event) => onAssetFieldChange(item.Asset, "Content Draft", event.target.value)}
+                placeholder="Paste the working copy, final caption, email, page copy, notes, or approval details here."
+                value={item["Content Draft"] ?? ""}
+              />
+            </label>
+          </div>
           <div className="meta-row">
             <span>{item.Owner}</span>
+            {item["Upload Link"] && (
+              <a href={item["Upload Link"]} rel="noreferrer" target="_blank">
+                Open upload
+              </a>
+            )}
           </div>
         </article>
       ))}

@@ -34,7 +34,8 @@ body {
 
 button,
 input,
-select {
+select,
+textarea {
   font: inherit;
 }
 
@@ -458,6 +459,8 @@ input[type="range"] {
 input[type="number"],
 .filters input,
 .filters select,
+.asset-content-fields input,
+.asset-content-fields textarea,
 .status-select {
   background: rgba(255, 255, 255, 0.76);
   border: 1px solid var(--line-strong);
@@ -465,6 +468,10 @@ input[type="number"],
   color: var(--ink);
   min-height: 42px;
   padding: 9px 12px;
+}
+
+textarea {
+  resize: vertical;
 }
 
 .workspace {
@@ -1361,6 +1368,47 @@ td small {
 .item-card dd {
   line-height: 1.4;
   margin: 0;
+}
+
+.asset-card {
+  align-content: start;
+}
+
+.asset-content-fields {
+  border-top: 1px solid var(--line-strong);
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 14px;
+}
+
+.asset-content-fields label {
+  color: var(--muted);
+  display: grid;
+  font-size: 12px;
+  font-weight: 900;
+  gap: 7px;
+  text-transform: uppercase;
+}
+
+.asset-content-fields input,
+.asset-content-fields textarea {
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.4;
+  text-transform: none;
+  width: 100%;
+}
+
+.asset-content-fields textarea {
+  min-height: 82px;
+}
+
+.asset-card .meta-row a {
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 900;
+  text-decoration: none;
 }
 
 .milestone-rail {
