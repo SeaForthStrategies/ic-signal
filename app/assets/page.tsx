@@ -1,5 +1,5 @@
-import LaunchCommandCenter from "@/components/LaunchCommandCenter";
+import CampaignCommandCenter from "@/components/CampaignCommandCenter";
 
 export default function AssetsPage() {
-  return <LaunchCommandCenter view="assets" />;
+  return <CampaignCommandCenter view="assets" />;
 }

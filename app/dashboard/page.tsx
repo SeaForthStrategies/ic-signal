@@ -1,5 +1,5 @@
-import LaunchCommandCenter from "@/components/LaunchCommandCenter";
+import CampaignCommandCenter from "@/components/CampaignCommandCenter";
 
 export default function DashboardPage() {
-  return <LaunchCommandCenter view="dashboard" />;
+  return <CampaignCommandCenter view="dashboard" />;
 }

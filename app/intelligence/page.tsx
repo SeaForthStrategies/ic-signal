@@ -1,5 +1,5 @@
-import LaunchCommandCenter from "@/components/LaunchCommandCenter";
+import CampaignCommandCenter from "@/components/CampaignCommandCenter";
 
 export default function IntelligencePage() {
-  return <LaunchCommandCenter view="intelligence" />;
+  return <CampaignCommandCenter view="intelligence" />;
 }

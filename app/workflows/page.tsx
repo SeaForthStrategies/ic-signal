@@ -1,5 +1,5 @@
-import LaunchCommandCenter from "@/components/LaunchCommandCenter";
+import CampaignCommandCenter from "@/components/CampaignCommandCenter";
 
 export default function WorkflowsPage() {
-  return <LaunchCommandCenter view="workflows" />;
+  return <CampaignCommandCenter view="workflows" />;
 }

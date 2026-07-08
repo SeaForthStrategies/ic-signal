@@ -1,5 +1,5 @@
-import LaunchCommandCenter from "@/components/LaunchCommandCenter";
+import CampaignCommandCenter from "@/components/CampaignCommandCenter";
 
 export default function MilestonesPage() {
-  return <LaunchCommandCenter view="milestones" />;
+  return <CampaignCommandCenter view="milestones" />;
 }

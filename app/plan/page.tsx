@@ -1,5 +1,5 @@
-import LaunchCommandCenter from "@/components/LaunchCommandCenter";
+import CampaignCommandCenter from "@/components/CampaignCommandCenter";
 
 export default function PlanPage() {
-  return <LaunchCommandCenter view="plan" />;
+  return <CampaignCommandCenter view="plan" />;
 }
