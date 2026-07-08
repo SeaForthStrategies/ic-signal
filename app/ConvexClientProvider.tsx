@@ -1,6 +1,7 @@
 "use client";
 
 import { ConvexProviderWithAuth, ConvexReactClient } from "convex/react";
+import { usePathname } from "next/navigation";
 import { type ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 
 export function ConvexClientProvider({ children }: { children: ReactNode }) {
@@ -19,6 +20,7 @@ export function ConvexClientProvider({ children }: { children: ReactNode }) {
 }
 
 function useConvexJwtAuth() {
+  const pathname = usePathname();
   const [isLoading, setIsLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -39,6 +41,20 @@ function useConvexJwtAuth() {
     return () => {
       active = false;
     };
+  }, [pathname]);
+
+  useEffect(() => {
+    async function refreshSession() {
+      try {
+        const response = await fetch("/api/auth/session");
+        const body = (await response.json().catch(() => null)) as { authenticated?: boolean } | null;
+        setIsAuthenticated(Boolean(response.ok && body?.authenticated));
+      } catch {
+        setIsAuthenticated(false);
+      }
+    }
+    window.addEventListener("focus", refreshSession);
+    return () => window.removeEventListener("focus", refreshSession);
   }, []);
 
   const fetchAccessToken = useCallback(async () => {

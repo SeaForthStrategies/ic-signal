@@ -208,6 +208,7 @@ export default function CampaignCommandCenter({ view = "dashboard" }: { view?: V
   const owners = Array.from(new Set([...tasks.map((task) => task.ownerName), ...dashboard.team.map((member) => member.name)])).filter(Boolean);
   const progress = percent(tasks.filter((task) => task.status === "Complete").length, tasks.length);
   const todaysTasks = tasks.filter((task) => task.dueDate === todayIso && task.status !== "Complete");
+  const focusTasks = todaysTasks.length > 0 ? todaysTasks : tasks.filter((task) => task.dueDate >= todayIso && task.status !== "Complete").slice(0, 5);
   const overdueTasks = tasks.filter((task) => task.dueDate < todayIso && task.status !== "Complete").slice(0, 8);
   const upcomingTasks = tasks.filter((task) => task.dueDate > todayIso && task.status !== "Complete").slice(0, 8);
   const recentUploads = [...assets].sort((a, b) => b.updatedAt - a.updatedAt).slice(0, 6);
@@ -279,9 +280,10 @@ export default function CampaignCommandCenter({ view = "dashboard" }: { view?: V
             assets={recentUploads}
             campaignProgress={progress}
             comments={dashboard.comments}
+            focusIsToday={todaysTasks.length > 0}
+            focusTasks={focusTasks}
             overdueTasks={overdueTasks}
             team={dashboard.team}
-            todaysTasks={todaysTasks}
             upcomingTasks={upcomingTasks}
             updateTask={updateTask}
           />
@@ -308,9 +310,10 @@ function DashboardHome({
   assets,
   campaignProgress,
   comments,
+  focusIsToday,
+  focusTasks,
   overdueTasks,
   team,
-  todaysTasks,
   upcomingTasks,
   updateTask,
 }: {
@@ -318,40 +321,46 @@ function DashboardHome({
   assets: CrmAsset[];
   campaignProgress: number;
   comments: Array<{ _id: string; body: string; createdByName: string }>;
+  focusIsToday: boolean;
+  focusTasks: CrmTask[];
   overdueTasks: CrmTask[];
   team: Array<{ id: Id<"users">; name: string; role: string }>;
-  todaysTasks: CrmTask[];
   upcomingTasks: CrmTask[];
   updateTask: ReturnType<typeof useMutation<typeof api.crm.updateTask>>;
 }) {
   return (
-    <section className="crm-home-grid">
-      <article className="crm-focus-card">
-        <div className="crm-section-heading">
-          <span><Clock3 size={18} /> What I need to do today</span>
-          <b>{todaysTasks.length} open</b>
-        </div>
-        <TaskList empty="No tasks due today." tasks={todaysTasks} updateTask={updateTask} />
-      </article>
-      <article className="crm-card">
-        <MetricRing label="Campaign progress" value={campaignProgress} />
-      </article>
-      <article className="crm-card">
-        <div className="crm-section-heading"><span><CircleAlert size={18} /> Overdue</span><b>{overdueTasks.length}</b></div>
-        <TaskList compact empty="Nothing overdue." tasks={overdueTasks} updateTask={updateTask} />
-      </article>
-      <article className="crm-card">
-        <div className="crm-section-heading"><span><CalendarDays size={18} /> Upcoming</span><b>{upcomingTasks.length}</b></div>
-        <TaskList compact empty="No upcoming tasks." tasks={upcomingTasks} updateTask={updateTask} />
-      </article>
-      <article className="crm-card">
-        <div className="crm-section-heading"><span><FileUp size={18} /> Recent uploads</span><b>{assets.length}</b></div>
-        <AssetList assets={assets} />
-      </article>
-      <article className="crm-card">
-        <div className="crm-section-heading"><span><Activity size={18} /> Team activity</span><b>{team.length} people</b></div>
-        <ActivityList activity={activity} comments={comments} />
-      </article>
+    <section className="crm-dashboard-layout">
+      <div className="crm-dashboard-primary">
+        <article className="crm-focus-card">
+          <div className="crm-section-heading">
+            <span><Clock3 size={18} /> {focusIsToday ? "What I need to do today" : "Next actionable work"}</span>
+            <b>{focusTasks.length} open</b>
+          </div>
+          {!focusIsToday && <p className="quiet-copy crm-focus-note">No open tasks are due today. Here is the next work to move the campaign forward.</p>}
+          <TaskList compact empty="No open work found." tasks={focusTasks} updateTask={updateTask} />
+        </article>
+        <article className="crm-card">
+          <div className="crm-section-heading"><span><CircleAlert size={18} /> Overdue</span><b>{overdueTasks.length}</b></div>
+          <TaskList compact empty="Nothing overdue." tasks={overdueTasks} updateTask={updateTask} />
+        </article>
+        <article className="crm-card">
+          <div className="crm-section-heading"><span><FileUp size={18} /> Recent uploads</span><b>{assets.length}</b></div>
+          <AssetList assets={assets} />
+        </article>
+      </div>
+      <div className="crm-dashboard-side">
+        <article className="crm-card">
+          <MetricRing label="Campaign progress" value={campaignProgress} />
+        </article>
+        <article className="crm-card">
+          <div className="crm-section-heading"><span><CalendarDays size={18} /> Upcoming</span><b>{upcomingTasks.length}</b></div>
+          <TaskList compact empty="No upcoming tasks." tasks={upcomingTasks} updateTask={updateTask} />
+        </article>
+        <article className="crm-card">
+          <div className="crm-section-heading"><span><Activity size={18} /> Team activity</span><b>{team.length} people</b></div>
+          <ActivityList activity={activity} comments={comments} />
+        </article>
+      </div>
     </section>
   );
 }

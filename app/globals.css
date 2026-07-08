@@ -1783,11 +1783,19 @@ td small {
   width: 100%;
 }
 
-.crm-home-grid {
+.crm-home-grid,
+.crm-dashboard-layout {
   align-items: start;
   display: grid;
   gap: 16px;
   grid-template-columns: minmax(0, 1.3fr) minmax(320px, 0.7fr);
+}
+
+.crm-dashboard-primary,
+.crm-dashboard-side {
+  align-content: start;
+  display: grid;
+  gap: 16px;
 }
 
 .crm-focus-card,
@@ -1804,14 +1812,18 @@ td small {
   padding: 20px;
 }
 
-.crm-focus-card {
-  min-height: 430px;
-}
-
 .crm-card,
 .daily-section,
 .phase-column {
   overflow: hidden;
+}
+
+.crm-focus-note {
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.16);
+  border-radius: 14px;
+  margin: 0 0 14px;
+  padding: 10px 12px;
 }
 
 .wide-panel {
@@ -1866,6 +1878,10 @@ td small {
   gap: 12px;
 }
 
+.crm-focus-card .task-list {
+  gap: 10px;
+}
+
 .task-row {
   background: rgba(255, 255, 255, 0.68);
   border: 1px solid var(--line-strong);
@@ -1877,11 +1893,25 @@ td small {
 }
 
 .task-list.compact .task-row {
+  align-items: start;
   grid-template-columns: 30px minmax(0, 1fr);
+  padding: 12px;
 }
 
 .task-list.compact .task-controls {
   display: none;
+}
+
+.task-list.compact .task-main {
+  gap: 7px;
+}
+
+.task-list.compact .task-title-line {
+  align-items: center;
+}
+
+.task-list.compact .task-title-line h3 {
+  flex: 1 1 220px;
 }
 
 .task-check {
@@ -2173,7 +2203,8 @@ td small {
 
 @media (max-width: 1180px) {
   .crm-shell,
-  .crm-home-grid {
+  .crm-home-grid,
+  .crm-dashboard-layout {
     grid-template-columns: 1fr;
   }
 
