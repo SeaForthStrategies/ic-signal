@@ -707,6 +707,12 @@ textarea {
   padding: 0 12px;
 }
 
+.password-field {
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
 .auth-form input,
 .account-form input,
 .account-form select {
@@ -719,10 +725,42 @@ textarea {
   width: 100%;
 }
 
+.account-form .password-field input {
+  padding-right: 44px;
+}
+
 .auth-form label > div input {
   background: transparent;
   border: 0;
   padding: 0;
+}
+
+.auth-form label > div input:has(+ .password-toggle) {
+  padding-right: 34px;
+}
+
+.password-toggle {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 10px;
+  color: var(--muted);
+  cursor: pointer;
+  display: inline-flex;
+  height: 34px;
+  justify-content: center;
+  min-width: 34px;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.account-form .password-toggle {
+  position: absolute;
+  right: 5px;
+}
+
+.password-toggle:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
 }
 
 .auth-submit {

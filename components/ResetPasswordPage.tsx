@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Lock, Rocket } from "lucide-react";
+import { ArrowRight, Eye, EyeOff, Lock, Rocket } from "lucide-react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
@@ -10,6 +10,7 @@ export default function ResetPasswordPage() {
   const searchParams = useSearchParams();
   const token = searchParams.get("token") ?? "";
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
@@ -58,9 +59,17 @@ export default function ResetPasswordPage() {
                 onChange={(event) => setPassword(event.target.value)}
                 placeholder="At least 8 characters"
                 required
-                type="password"
+                type={showPassword ? "text" : "password"}
                 value={password}
               />
+              <button
+                aria-label={showPassword ? "Hide password" : "Show password"}
+                className="password-toggle"
+                onClick={() => setShowPassword((current) => !current)}
+                type="button"
+              >
+                {showPassword ? <EyeOff size={17} /> : <Eye size={17} />}
+              </button>
             </div>
           </label>
           {error && <p className="auth-error">{error}</p>}

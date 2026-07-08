@@ -7,6 +7,8 @@ import {
   CheckCircle2,
   CircleAlert,
   ClipboardCheck,
+  Eye,
+  EyeOff,
   Filter,
   Gauge,
   LayoutDashboard,
@@ -1126,6 +1128,11 @@ function SettingsPage({
   const [team, setTeam] = useState<TeamMember[]>([]);
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const [visiblePasswords, setVisiblePasswords] = useState({
+    current: false,
+    invite: false,
+    next: false,
+  });
   const [invite, setInvite] = useState({
     email: "",
     name: "",
@@ -1265,23 +1272,43 @@ function SettingsPage({
         <form className="account-form" onSubmit={savePassword}>
           <label>
             <span>Current password</span>
-            <input
-              autoComplete="current-password"
-              onChange={(event) => setCurrentPassword(event.target.value)}
-              placeholder="Current password"
-              type="password"
-              value={currentPassword}
-            />
+            <div className="password-field">
+              <input
+                autoComplete="current-password"
+                onChange={(event) => setCurrentPassword(event.target.value)}
+                placeholder="Current password"
+                type={visiblePasswords.current ? "text" : "password"}
+                value={currentPassword}
+              />
+              <button
+                aria-label={visiblePasswords.current ? "Hide current password" : "Show current password"}
+                className="password-toggle"
+                onClick={() => setVisiblePasswords((current) => ({ ...current, current: !current.current }))}
+                type="button"
+              >
+                {visiblePasswords.current ? <EyeOff size={17} /> : <Eye size={17} />}
+              </button>
+            </div>
           </label>
           <label>
             <span>New password</span>
-            <input
-              autoComplete="new-password"
-              onChange={(event) => setNewPassword(event.target.value)}
-              placeholder="At least 8 characters"
-              type="password"
-              value={newPassword}
-            />
+            <div className="password-field">
+              <input
+                autoComplete="new-password"
+                onChange={(event) => setNewPassword(event.target.value)}
+                placeholder="At least 8 characters"
+                type={visiblePasswords.next ? "text" : "password"}
+                value={newPassword}
+              />
+              <button
+                aria-label={visiblePasswords.next ? "Hide new password" : "Show new password"}
+                className="password-toggle"
+                onClick={() => setVisiblePasswords((current) => ({ ...current, next: !current.next }))}
+                type="button"
+              >
+                {visiblePasswords.next ? <EyeOff size={17} /> : <Eye size={17} />}
+              </button>
+            </div>
           </label>
           <button className="clear-filters settings-action" type="submit">
             Update password
@@ -1327,13 +1354,23 @@ function SettingsPage({
           </label>
           <label>
             <span>Temporary password</span>
-            <input
-              onChange={(event) => setInvite((current) => ({ ...current, temporaryPassword: event.target.value }))}
-              placeholder="At least 8 characters"
-              required
-              type="password"
-              value={invite.temporaryPassword}
-            />
+            <div className="password-field">
+              <input
+                onChange={(event) => setInvite((current) => ({ ...current, temporaryPassword: event.target.value }))}
+                placeholder="At least 8 characters"
+                required
+                type={visiblePasswords.invite ? "text" : "password"}
+                value={invite.temporaryPassword}
+              />
+              <button
+                aria-label={visiblePasswords.invite ? "Hide temporary password" : "Show temporary password"}
+                className="password-toggle"
+                onClick={() => setVisiblePasswords((current) => ({ ...current, invite: !current.invite }))}
+                type="button"
+              >
+                {visiblePasswords.invite ? <EyeOff size={17} /> : <Eye size={17} />}
+              </button>
+            </div>
           </label>
           <button className="clear-filters settings-action" type="submit">
             Add team member

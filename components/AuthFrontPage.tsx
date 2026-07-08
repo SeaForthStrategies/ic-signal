@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, CheckCircle2, Lock, Mail, Rocket, User } from "lucide-react";
+import { ArrowRight, CheckCircle2, Eye, EyeOff, Lock, Mail, Rocket, User } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -13,6 +13,7 @@ export default function AuthFrontPage({ mode = "signin" }: { mode?: "signin" | "
   const [workspaceName, setWorkspaceName] = useState("Finding Winners Launch CRM");
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const isSignup = activeMode === "signup";
 
@@ -161,13 +162,21 @@ export default function AuthFrontPage({ mode = "signin" }: { mode?: "signin" | "
             <div>
               <Lock size={17} />
               <input
-                autoComplete="current-password"
+                autoComplete={isSignup ? "new-password" : "current-password"}
                 onChange={(event) => setPassword(event.target.value)}
                 placeholder="••••••••"
                 required
-                type="password"
+                type={showPassword ? "text" : "password"}
                 value={password}
               />
+              <button
+                aria-label={showPassword ? "Hide password" : "Show password"}
+                className="password-toggle"
+                onClick={() => setShowPassword((current) => !current)}
+                type="button"
+              >
+                {showPassword ? <EyeOff size={17} /> : <Eye size={17} />}
+              </button>
             </div>
           </label>
 
